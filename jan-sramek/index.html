@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jan Sramek Episode — Launch Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --yellow: #f5c518;
+            --yellow-light: #ffd84d;
+            --dark: #1a1a1a;
+            --darker: #111;
+            --gray: #2a2a2a;
+            --gray-light: #3a3a3a;
+            --text: #e8e8e8;
+            --text-muted: #999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--dark);
+            padding: 32px 20px;
+            border-bottom: 3px solid var(--yellow);
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .show-name {
+            color: var(--yellow);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .episode-info {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .launch-badge {
+            background: var(--yellow);
+            color: var(--dark);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .launch-badge .date {
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Overview section */
+        .overview-section {
+            background: var(--dark);
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .overview-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+
+        .overview-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .overview-content > p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tldr-box {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .tldr-box h3 {
+            color: var(--yellow);
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .tldr-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tldr-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .tldr-number {
+            width: 28px;
+            height: 28px;
+            background: var(--yellow);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .tldr-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tldr-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .overview-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Role selector */
+        .role-selector {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray);
+        }
+
+        .role-selector h2 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--yellow);
+        }
+
+        .role-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .role-btn {
+            padding: 14px 24px;
+            background: var(--gray);
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .role-btn:hover {
+            border-color: var(--yellow);
+        }
+
+        .role-btn.active {
+            background: var(--yellow);
+            color: var(--dark);
+            border-color: var(--yellow);
+            font-weight: 600;
+        }
+
+        .role-btn small {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Checklist view */
+        .checklist-section {
+            display: none;
+        }
+
+        .checklist-section.active {
+            display: block;
+        }
+
+        .day-section {
+            background: var(--dark);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+        }
+
+        .day-header {
+            background: var(--gray);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .day-badge {
+            background: var(--yellow);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .day-badge.clip {
+            background: var(--gray-light);
+            color: var(--text);
+        }
+
+        .day-content {
+            padding: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--gray);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+
+        .task-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--yellow);
+            border-radius: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .task-checkbox.checked {
+            background: var(--yellow);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .task-details {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .task-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .task-action {
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            padding: 10px 16px;
+            background: var(--yellow);
+            color: var(--dark);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--yellow-light);
+        }
+
+        .action-btn.secondary {
+            background: var(--gray-light);
+            color: var(--text);
+        }
+
+        /* Post preview */
+        .post-preview {
+            background: var(--darker);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+            border: 1px solid var(--gray);
+        }
+
+        .post-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .platform-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .platform-dot.linkedin { background: #0077b5; }
+        .platform-dot.twitter { background: #1da1f2; }
+        .platform-dot.instagram { background: #e4405f; }
+        .platform-dot.tiktok { background: #ff0050; }
+
+        .post-text {
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .copy-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .copy-btn {
+            padding: 8px 16px;
+            background: var(--gray-light);
+            color: var(--text);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--yellow);
+            color: var(--dark);
+        }
+
+        .copy-btn.copied {
+            background: #22c55e;
+            color: white;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--gray-light);
+            color: var(--yellow);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .download-link:hover {
+            background: var(--yellow);
+            color: var(--dark);
+        }
+
+        /* Options toggle */
+        .options-toggle {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .options-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .more-options {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .more-options.show {
+            display: block;
+        }
+
+        .option-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+
+        /* Assets section */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .asset-card {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--gray);
+        }
+
+        .asset-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .asset-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .asset-card a, .asset-card .placeholder {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--yellow);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .asset-card .placeholder {
+            background: var(--gray);
+            color: var(--text-muted);
+        }
+
+        /* Links section */
+        .links-section {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray);
+        }
+
+        .links-section h2 {
+            color: var(--yellow);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .link-row:last-child {
+            border-bottom: none;
+        }
+
+        .link-label {
+            font-size: 0.95rem;
+        }
+
+        .link-value {
+            color: var(--yellow);
+            text-decoration: none;
+        }
+
+        .link-value.placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Help section */
+        .help-section {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 40px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .help-section h3 {
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .help-section p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header-top {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .role-buttons {
+                flex-direction: column;
+            }
+
+            .role-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div>
+                    <div class="show-name">Is This Working?!</div>
+                    <h1>Jan's Episode Launch Guide</h1>
+                    <p class="episode-info">"We've Built Cities for 20,000 Years. Why Did We Stop?"</p>
+                </div>
+                <div class="launch-badge">
+                    <div>LAUNCH DAY</div>
+                    <div class="date">Wed, Feb 11</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overview-section">
+        <div class="overview-content">
+            <h2>Hey California Forever team!</h2>
+            <p>We're thrilled to launch Jan's episode next week. We've done all the prep work for you, so this should be easy.</p>
+
+            <div class="tldr-box">
+                <h3>The game plan</h3>
+                <div class="tldr-items">
+                    <div class="tldr-item">
+                        <span class="tldr-number">1</span>
+                        <div>
+                            <strong>Launch Day (Wed Feb 11)</strong>
+                            <p>Share the trailer from Jan's accounts and California Forever's pages. We wrote all the copy - just pick whichever version feels right and paste it.</p>
+                        </div>
+                    </div>
+                    <div class="tldr-item">
+                        <span class="tldr-number">2</span>
+                        <div>
+                            <strong>Clips (Fri/Mon/Wed after launch)</strong>
+                            <p>We'll post short clips from @isthisworkingpod. We'd love for you to post them too if you'd like - totally up to you. Just accept the IG collab requests or share to your stories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="overview-note">Below are a few sample posts for each platform that you can copy paste or edit - whatever feels easiest! Pick a view to see what's prepped for you.</p>
+
+            <p class="overview-note" style="margin-top: 12px;">Questions about any of this? Reach out to <strong style="color: var(--text);">Brittany</strong> — <a href="mailto:brittany@isthisworkingpod.com" style="color: var(--yellow); text-decoration: none;">brittany@isthisworkingpod.com</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Role Selector -->
+        <div class="role-selector">
+            <h2>I'm posting for...</h2>
+            <div class="role-buttons">
+                <button class="role-btn active" onclick="showRole('jan')">
+                    Jan's Accounts
+                    <small>@jansramek</small>
+                </button>
+                <button class="role-btn" onclick="showRole('cf')">
+                    California Forever
+                    <small>@californiaforever</small>
+                </button>
+                <button class="role-btn" onclick="showRole('all')">
+                    Everyone
+                    <small>Full timeline</small>
+                </button>
+                <button class="role-btn" onclick="showRole('assets')">
+                    Downloads
+                    <small>Videos & images</small>
+                </button>
+            </div>
+        </div>
+
+        <!-- JAN'S CHECKLIST -->
+        <div id="jan-checklist" class="checklist-section active">
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, Feb 11 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">LinkedIn post - ready to go</div>
+                            <div class="task-description">Trailer video is ready to attach. Episode link works great as a first comment.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — @jansramek</span>
+                                </div>
+                                <div class="post-text">"Am I wasting the best years of my life?"
+
+For years, that question followed me. My friends thought I'd lost it. Investors wouldn't return my calls. My wife was the only person who believed.
+
+I sat down with @Connor Diemand-Yauman to talk about what it actually takes to build something when nobody believes in it yet.
+
+We talked about doubt. About persistence. About spending eight months trying to prove my own idea was wrong before betting everything on it.
+
+Full episode in the comments.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'jan-linkedin')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('jan-linkedin-options')">+ 2 more options</span>
+                                <div id="jan-linkedin-options" class="more-options">
+                                    <div class="option-label">Option 2 — Shorter</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">I spent eight months trying to prove my own idea was wrong.
+
+Then I found a 1958 government study on eBay. Waited two weeks. Opened it up. A city. Planned for the exact same coordinates. Same spot. To the mile.
+
+New conversation with @Connor Diemand-Yauman on what it takes to build something nobody believes in.
+
+Link in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'jan-linkedin-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                    <div class="option-label">Option 3 — California Forever angle</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">We've built cities for 20,000 years. We've built them in America for 250 years.
+
+Why did we decide we have the perfect number? In a state that's short 3 million homes?
+
+I joined @Connor Diemand-Yauman on Is This Working?! to talk about what it actually takes. The doubt. The mistakes. Why house parties changed more minds than any ad campaign.
+
+Link in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'jan-linkedin-3')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">X/Twitter post - ready to go</div>
+                            <div class="task-description">Trailer video optional here. Episode link included in the copy below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @jansramek</span>
+                                </div>
+                                <div class="post-text">"This is an amazing idea."
+
+20 seconds later: "This idea is completely batshit crazy."
+
+My first reaction to building a new city. Years later, I sat down with @connordy to talk about what it actually took.
+
+[LINK]</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'jan-twitter')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Instagram post - ready to go</div>
+                            <div class="task-description">Trailer video for Reels or Feed. May want to update link in bio too.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram — @jansramek</span>
+                                </div>
+                                <div class="post-text">Not a startup. Not an app. A city.
+
+I sat down with @connordiemandyauman to talk about doubt, persistence, and betting everything on an idea nobody believed in.
+
+Episode out now. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'jan-ig')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">TikTok post - ready to go</div>
+                            <div class="task-description">Same trailer video, TikTok version.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot tiktok"></span>
+                                    <span>TikTok — @jansramek</span>
+                                </div>
+                                <div class="post-text">"This is an amazing idea." 20 seconds later... "This idea is completely batshit crazy."
+
+Full episode out now. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'jan-tiktok')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Friday, Feb 13 — Clip 1</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">We'll send a collab request from @isthisworkingpod for the "eBay Story" clip. Just accept it when it comes through, or share to your stories.</div>
+                            <div class="task-description" style="margin-top: 8px;">Want to post it from Jan's accounts too? Grab it here:</div>
+                            <a href="#clip-1" class="download-link" download>↓ Download "eBay Story" clip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Monday, Feb 16 — Clip 2</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">"Hearts and Minds" clip from @isthisworkingpod. Same as before - accept the collab or share to stories.</div>
+                            <div class="task-description" style="margin-top: 8px;">Want to post it from Jan's accounts too? Grab it here:</div>
+                            <a href="#clip-2" class="download-link" download>↓ Download "Hearts and Minds" clip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, Feb 18 — Clip 3</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">"Brute Force of Coffee" clip from @isthisworkingpod. Accept the collab or share to stories.</div>
+                            <div class="task-description" style="margin-top: 8px;">Want to post it from Jan's accounts too? Grab it here:</div>
+                            <a href="#clip-3" class="download-link" download>↓ Download "Brute Force of Coffee" clip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALIFORNIA FOREVER CHECKLIST -->
+        <div id="cf-checklist" class="checklist-section">
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, Feb 11 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">LinkedIn - repost Jan's or use the standalone version</div>
+                            <div class="task-description">Once Jan posts, you can repost from the CF page. Or use the standalone version below if you'd rather post fresh.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — California Forever (independent post)</span>
+                                </div>
+                                <div class="post-text">California used to do big things. Golden Gate Bridge. Silicon Valley. The Space Race.
+
+Our founder @Jan Sramek sat down with @Connor Diemand-Yauman to talk about what it takes to build the next great American city, and why he spent 8 months trying to prove his own idea was wrong.
+
+170,000 homes. 530,000 jobs. One conversation about what it actually takes.
+
+Full episode in comments.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'cf-linkedin')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('cf-linkedin-options')">+ 1 more option</span>
+                                <div id="cf-linkedin-options" class="more-options">
+                                    <div class="option-label">Option 2 — Data-forward</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">California is short 3 million homes. We've been building cities for 20,000 years.
+
+Our founder @Jan Sramek on the doubt, the resilience, and the work behind building something at this scale.
+
+New conversation with @Connor Diemand-Yauman out now. Link in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'cf-linkedin-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">X/Twitter - quote tweet Jan or post standalone</div>
+                            <div class="task-description">A quote tweet of Jan's post is the easiest move. Standalone option below if you'd prefer.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @californiaforever (quote tweet)</span>
+                                </div>
+                                <div class="post-text">Our founder on what it takes to build something so big most people can't even imagine it.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'cf-twitter')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('cf-twitter-options')">+ 2 more options</span>
+                                <div id="cf-twitter-options" class="more-options">
+                                    <div class="option-label">Quote tweet option 2</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">"We've built cities for 20,000 years. Why did we stop?" New episode out now.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'cf-twitter-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                    <div class="option-label">Independent post</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">California used to build big. Golden Gate. Silicon Valley. The Space Race.
+
+Our founder on what it takes to do it again: [LINK]</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'cf-twitter-3')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Instagram post - ready to go</div>
+                            <div class="task-description">Trailer video with brand caption. Works for Reels or Feed.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram — @californiaforever</span>
+                                </div>
+                                <div class="post-text">California used to build big. Golden Gate. Silicon Valley. The Space Race.
+
+Our founder @jansramek sat down with @connordiemandyauman to talk about what it takes to build the next great American city.
+
+Episode out now. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'cf-ig')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">TikTok post - ready to go</div>
+                            <div class="task-description">Same trailer, TikTok version.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot tiktok"></span>
+                                    <span>TikTok — @californiaforever</span>
+                                </div>
+                                <div class="post-text">170,000 homes. 530,000 jobs. 8 months trying to prove himself wrong.
+
+Our founder on what it actually takes. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'cf-tiktok')">Copy text</button>
+                                    <a href="#trailer" class="download-link" download>↓ Download trailer video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Friday, Feb 13 — Clip 1</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">"eBay Story" clip from @isthisworkingpod. Accept the collab or share to stories.</div>
+                            <div class="task-description" style="margin-top: 8px;">Want to post it from the CF accounts too? Grab it here:</div>
+                            <a href="#clip-1" class="download-link" download>↓ Download "eBay Story" clip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Monday, Feb 16 — Clip 2</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">"Hearts and Minds" clip from @isthisworkingpod. Same as before - accept the collab or share to stories.</div>
+                            <div class="task-description" style="margin-top: 8px;">Want to post it from the CF accounts too? Grab it here:</div>
+                            <a href="#clip-2" class="download-link" download>↓ Download "Hearts and Minds" clip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, Feb 18 — Clip 3</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">"Brute Force of Coffee" clip from @isthisworkingpod. Accept the collab or share to stories.</div>
+                            <div class="task-description" style="margin-top: 8px;">Want to post it from the CF accounts too? Grab it here:</div>
+                            <a href="#clip-3" class="download-link" download>↓ Download "Brute Force of Coffee" clip</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL SCHEDULE -->
+        <div id="all-checklist" class="checklist-section">
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, Feb 11 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Episode goes live on all platforms</div>
+                            <div class="task-description">ITW team handles YouTube, Apple Podcasts, Spotify - nothing needed from you here</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Jan's LinkedIn post goes up</div>
+                            <div class="task-description">With trailer video attached</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Connor's LinkedIn post goes up</div>
+                            <div class="task-description">ITW launch post with trailer</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">California Forever shares on LinkedIn</div>
+                            <div class="task-description">Repost Jan's or use standalone version, after Jan posts</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Jan's X/Twitter post goes up</div>
+                            <div class="task-description">With episode link</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">California Forever shares on X</div>
+                            <div class="task-description">Quote tweet or retweet Jan's post</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Jan's Instagram + TikTok posts go up</div>
+                            <div class="task-description">Trailer video</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">ITW trailer goes up on Instagram + TikTok</div>
+                            <div class="task-description">@isthisworkingpod</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">California Forever's Instagram + TikTok posts go up</div>
+                            <div class="task-description">Trailer video</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Friday, Feb 13 — Clip 1: "eBay Story"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">@isthisworkingpod posts Clip 1</div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Jan + CF: IG collab request coming your way</div>
+                            <div class="task-description">Accept the collab, share to stories, or post it yourselves - totally up to you</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Monday, Feb 16 — Clip 2: "Hearts and Minds"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">@isthisworkingpod posts Clip 2</div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Jan + CF: IG collab request coming your way</div>
+                            <div class="task-description">Accept the collab, share to stories, or post it yourselves - totally up to you</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, Feb 18 — Clip 3: "Brute Force of Coffee"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">@isthisworkingpod posts Clip 3</div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+
+                            <div class="task-title">Jan + CF: IG collab request coming your way</div>
+                            <div class="task-description">Accept the collab, share to stories, or post it yourselves - totally up to you</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ASSETS & LINKS -->
+        <div id="assets-checklist" class="checklist-section">
+            <div class="links-section">
+                <h2>Episode Links</h2>
+                <div class="link-row">
+                    <span class="link-label">Linktree (all platforms)</span>
+                    <a href="https://linktr.ee/isthisworkingpod" target="_blank" class="link-value">linktr.ee/isthisworkingpod</a>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">YouTube</span>
+                    <span class="link-value placeholder">Live on Feb 11</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Apple Podcasts</span>
+                    <span class="link-value placeholder">Live on Feb 11</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Spotify</span>
+                    <span class="link-value placeholder">Live on Feb 11</span>
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 16px; color: var(--yellow);">Download Assets</h2>
+            <div class="assets-grid">
+                <div class="asset-card">
+                    <h3>Trailer Video</h3>
+                    <p>1:1 square format for LinkedIn, IG, TikTok</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Episode Thumbnail</h3>
+                    <p>For social preview images</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 1: "eBay Story"</h3>
+                    <p>For Friday, Feb 13</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 2: "Hearts and Minds"</h3>
+                    <p>For Monday, Feb 16</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 3: "Brute Force of Coffee"</h3>
+                    <p>For Wednesday, Feb 18</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <h3>Questions? We're here.</h3>
+            <p>If anything's unclear or you need a hand with any of this, reach out to <strong>Brittany</strong> on the ITW team. She's your go-to for anything launch-related.</p>
+            <p style="margin-top: 12px;"><a href="mailto:brittany@isthisworkingpod.com" style="color: var(--yellow); text-decoration: none; font-weight: 600;">brittany@isthisworkingpod.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showRole(role) {
+            // Update buttons
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.role-btn').classList.add('active');
+
+            // Hide all checklists
+            document.querySelectorAll('.checklist-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected checklist
+            document.getElementById(role + '-checklist').classList.add('active');
+        }
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+        }
+
+        function copyText(btn, id) {
+            const postText = btn.closest('.post-preview').querySelector('.post-text').innerText;
+            navigator.clipboard.writeText(postText).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy text';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function toggleOptions(id) {
+            const options = document.getElementById(id);
+            options.classList.toggle('show');
+            const toggle = options.previousElementSibling;
+            if (options.classList.contains('show')) {
+                toggle.textContent = '− Hide options';
+            } else {
+                toggle.textContent = toggle.textContent.replace('− Hide options', '+ 2 more options');
+            }
+        }
+    </script>
+</body>
+</html>
