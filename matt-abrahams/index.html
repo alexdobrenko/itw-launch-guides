@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matt Abrahams Episode — Launch Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --yellow: #f0c000;
+            --yellow-light: #ffd740;
+            --yellow-glow: rgba(240, 192, 0, 0.12);
+            --yellow-glow-strong: rgba(240, 192, 0, 0.25);
+            --dark: #161618;
+            --darker: #0e0e10;
+            --gray: #1e1e22;
+            --gray-light: #2a2a30;
+            --gray-mid: #38383f;
+            --text: #eaeaec;
+            --text-muted: #8a8a94;
+            --radius: 10px;
+            --radius-lg: 16px;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* === HEADER === */
+        .header {
+            background: var(--dark);
+            padding: 40px 24px 36px;
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+        }
+
+        .header-content {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0;
+        }
+
+        .show-name {
+            color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .episode-info {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        .launch-badge {
+            background: var(--yellow);
+            color: var(--darker);
+            padding: 14px 22px;
+            border-radius: var(--radius);
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 24px rgba(240, 192, 0, 0.3);
+        }
+
+        .launch-badge .date {
+            font-size: 1.15rem;
+            letter-spacing: 0;
+            text-transform: none;
+            margin-top: 2px;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* === OVERVIEW === */
+        .overview-section {
+            background: var(--dark);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .overview-content {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 36px 24px 32px;
+        }
+
+        .overview-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .overview-content > p {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .tldr-box {
+            background: linear-gradient(135deg, var(--gray) 0%, rgba(30,30,34,0.6) 100%);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 28px;
+            border-left: 3px solid var(--yellow);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-left: 3px solid var(--yellow);
+        }
+
+        .tldr-box h3 {
+            color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .tldr-items {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .tldr-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .tldr-number {
+            width: 26px;
+            height: 26px;
+            background: var(--yellow);
+            color: var(--darker);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .tldr-item strong {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .tldr-item p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .overview-note {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* === ROLE SELECTOR === */
+        .role-selector {
+            background: var(--dark);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .role-selector h2 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+        }
+
+        .role-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .role-btn {
+            padding: 12px 22px;
+            background: var(--gray);
+            border: 1.5px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            color: var(--text);
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .role-btn:hover {
+            border-color: var(--yellow);
+            background: var(--yellow-glow);
+        }
+
+        .role-btn.active {
+            background: var(--yellow);
+            color: var(--darker);
+            border-color: var(--yellow);
+            font-weight: 600;
+            box-shadow: 0 2px 16px rgba(240, 192, 0, 0.25);
+        }
+
+        .role-btn small {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 400;
+        }
+
+        .role-btn.active small {
+            opacity: 0.8;
+        }
+
+        /* === CHECKLIST === */
+        .checklist-section {
+            display: none;
+        }
+
+        .checklist-section.active {
+            display: block;
+            animation: fadeUp 0.3s ease;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .day-section {
+            background: var(--dark);
+            border-radius: var(--radius-lg);
+            margin-bottom: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.2s;
+        }
+
+        .day-section:has(.day-header.open) {
+            border-color: rgba(240, 192, 0, 0.15);
+        }
+
+        .day-header {
+            background: var(--gray);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+            gap: 12px;
+        }
+
+        .day-header:hover {
+            background: var(--gray-light);
+        }
+
+        .day-chevron {
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            margin-right: 8px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .day-header.open .day-chevron {
+            transform: rotate(90deg);
+            color: var(--yellow);
+        }
+
+        .day-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .day-badge {
+            background: var(--yellow);
+            color: var(--darker);
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .day-badge.clip {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .day-content {
+            padding: 20px;
+            display: none;
+        }
+
+        .day-content.open {
+            display: block;
+            animation: slideDown 0.25s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .task-item {
+            display: flex;
+            gap: 14px;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.02);
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            align-items: flex-start;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .task-item:hover {
+            border-color: rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.035);
+        }
+
+        .task-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--gray-mid);
+            border-radius: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            transition: all 0.2s;
+        }
+
+        .task-checkbox:hover {
+            border-color: var(--yellow);
+        }
+
+        .task-checkbox.checked {
+            background: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: var(--darker);
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .task-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .task-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .task-action {
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            padding: 10px 18px;
+            background: var(--yellow);
+            color: var(--darker);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--yellow-light);
+            box-shadow: 0 2px 12px rgba(240, 192, 0, 0.25);
+        }
+
+        .action-btn.secondary {
+            background: var(--gray-light);
+            color: var(--text);
+        }
+
+        /* === POST PREVIEW === */
+        .post-preview {
+            background: var(--darker);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-top: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .post-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .platform-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            box-shadow: 0 0 6px currentColor;
+        }
+
+        .platform-dot.linkedin { background: #0a66c2; color: #0a66c2; }
+        .platform-dot.twitter { background: #1d9bf0; color: #1d9bf0; }
+        .platform-dot.instagram { background: #e4405f; color: #e4405f; }
+        .platform-dot.tiktok { background: #ff0050; color: #ff0050; }
+
+        .post-text {
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .copy-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.06);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--yellow);
+            color: var(--darker);
+            border-color: var(--yellow);
+        }
+
+        .copy-btn.copied {
+            background: #16a34a;
+            border-color: #16a34a;
+            color: white;
+        }
+
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.06);
+            color: var(--yellow);
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .download-link:hover {
+            background: var(--yellow);
+            color: var(--darker);
+            border-color: var(--yellow);
+        }
+
+        /* === OPTIONS TOGGLE === */
+        .options-toggle {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .options-toggle:hover {
+            color: var(--yellow);
+        }
+
+        .more-options {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .more-options.show {
+            display: block;
+            animation: fadeUp 0.2s ease;
+        }
+
+        .option-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            margin-top: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* === ASSETS === */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+        }
+
+        .asset-card {
+            background: var(--dark);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .asset-card:hover {
+            border-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .asset-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .asset-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .asset-card a, .asset-card .placeholder {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--yellow);
+            color: var(--darker);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .asset-card a:hover {
+            box-shadow: 0 2px 16px rgba(240, 192, 0, 0.3);
+        }
+
+        .asset-card .placeholder {
+            background: var(--gray);
+            color: var(--text-muted);
+        }
+
+        /* === LINKS SECTION === */
+        .links-section {
+            background: var(--dark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .links-section h2 {
+            color: var(--yellow);
+            margin-bottom: 18px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .link-row:last-child {
+            border-bottom: none;
+        }
+
+        .link-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .link-value {
+            color: var(--yellow);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            transition: opacity 0.2s;
+        }
+
+        .link-value:hover {
+            opacity: 0.8;
+        }
+
+        .link-value.placeholder {
+            color: var(--text-muted);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* === HELP SECTION === */
+        .help-section {
+            background: var(--gray);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-top: 48px;
+            margin-bottom: 48px;
+            border-left: 3px solid var(--yellow);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-left: 3px solid var(--yellow);
+        }
+
+        .help-section h3 {
+            color: var(--yellow);
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .help-section p {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* === FOOTER FADE === */
+        body::after {
+            content: '';
+            display: block;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+            opacity: 0.3;
+            max-width: 880px;
+            margin: 0 auto 40px;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .header {
+                padding: 28px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-top {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .launch-badge {
+                align-self: flex-start;
+            }
+
+            .overview-content {
+                padding: 28px 16px;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            .role-buttons {
+                flex-direction: column;
+            }
+
+            .role-btn {
+                width: 100%;
+            }
+
+            .role-selector {
+                padding: 20px;
+            }
+
+            .day-title {
+                font-size: 0.88rem;
+            }
+
+            .assets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === SELECTION COLOR === */
+        ::selection {
+            background: var(--yellow);
+            color: var(--darker);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div>
+                    <div class="show-name">Is This Working?!</div>
+                    <h1>Matt's Episode Launch Guide</h1>
+                    <p class="episode-info">Episode #7 — Wednesday, March 11, 2026</p>
+                </div>
+                <div class="launch-badge">
+                    <div>LAUNCH DAY</div>
+                    <div class="date">Wed, Mar 11</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overview-section">
+        <div class="overview-content">
+            <h2>Hey Matt! (and team)</h2>
+            <p>This page has everything you need for the episode launch: pre-written posts you can copy-paste, a clip schedule, and download links for all the video files. Nothing here is mandatory. Post what feels right, skip what doesn't.</p>
+
+            <div class="tldr-box">
+                <h3>Quick summary</h3>
+                <div class="tldr-items">
+                    <div class="tldr-item">
+                        <span class="tldr-number">1</span>
+                        <div>
+                            <strong>Launch Day (Wed Mar 11)</strong>
+                            <p>Share the trailer from Matt's accounts and/or Think Fast, Talk Smart pages. We wrote copy for LinkedIn, X, and Instagram below. Pick whichever version feels right and paste it. Trailer video is in the Downloads tab.</p>
+                        </div>
+                    </div>
+                    <div class="tldr-item">
+                        <span class="tldr-number">2</span>
+                        <div>
+                            <strong>Clips (Mar 13 - Mar 20)</strong>
+                            <p>We'll post 4 short clips from @isthisworkingpod over the next two weeks. For each one, you can: post the video directly from your accounts, accept our IG collab request (so it shows on both profiles), or just share to stories. Suggested captions included for each clip.</p>
+                        </div>
+                    </div>
+                    <div class="tldr-item">
+                        <span class="tldr-number">3</span>
+                        <div>
+                            <strong>How this page works</strong>
+                            <p>Use the tabs below to switch views. "Matt's Accounts" shows posts for Matt's personal pages. "Think Fast, Talk Smart" shows posts for the TFTS pages. "Everyone" shows the full timeline. "Downloads" has all the video files and links.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="overview-note">Every post has a "Copy text" button. Grab whichever version you like, edit it however you want, and post. The episode link for all platforms is: <a href="https://linktr.ee/isthisworkingpod" target="_blank" style="color: var(--yellow); text-decoration: none; font-weight: 600;">linktr.ee/isthisworkingpod</a></p>
+
+            <p class="overview-note" style="margin-top: 12px;">Questions about any of this? Reach out to <strong style="color: var(--text);">Brittany</strong> (<a href="mailto:bdavis@meritamerica.org" style="color: var(--yellow); text-decoration: none;">bdavis@meritamerica.org</a>) or <strong style="color: var(--text);">Alex</strong> (<a href="mailto:alex.dobrenko@meritamerica.org" style="color: var(--yellow); text-decoration: none;">alex.dobrenko@meritamerica.org</a>)</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Role Selector -->
+        <div class="role-selector">
+            <h2>I'm posting for...</h2>
+            <div class="role-buttons">
+                <button class="role-btn active" onclick="showRole('matt')">
+                    Matt's Accounts
+                    <small>@mattabrahams</small>
+                </button>
+                <button class="role-btn" onclick="showRole('tfts')">
+                    Think Fast, Talk Smart
+                    <small>@thinkfasttalksmart</small>
+                </button>
+                <button class="role-btn" onclick="showRole('all')">
+                    Everyone
+                    <small>Full timeline</small>
+                </button>
+                <button class="role-btn" onclick="showRole('assets')">
+                    Downloads
+                    <small>Videos & images</small>
+                </button>
+            </div>
+        </div>
+
+        <!-- MATT'S CHECKLIST -->
+        <div id="matt-checklist" class="checklist-section active">
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Wednesday, Mar 11 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">LinkedIn post - ready to go</div>
+                            <div class="task-description">Trailer video is ready to attach. Episode link works great as a first comment.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — Matt Abrahams (Recommended)</span>
+                                </div>
+                                <div class="post-text">A student in my class froze during an exercise. Not because he didn't know the answer, but because he felt he wasn't being "wrong enough."
+
+He was going to call a chair a cat. But a cat has four legs and a chair has four legs, so it wasn't wrong enough.
+
+That moment captures something I think about a lot: we judge our communication far more than we need to. Connection, not perfection.
+
+I sat down with two fellow @Stanford Graduate School of Business colleagues, @Connor Diemand-Yauman and @Rebecca Taber Staehelin, for a live coaching session on communication, spontaneity, and showing up authentically as a leader.
+
+Full episode in the comments.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-linkedin')">Copy text</button>
+                                    <span class="download-link" style="cursor: default; opacity: 0.5;">↓ Download trailer video (coming soon)</span>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('matt-linkedin-options')">+ 2 more options</span>
+                                <div id="matt-linkedin-options" class="more-options">
+                                    <div class="option-label">Option 2 — Shorter</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">My mom always told me: "Tell the time, don't build the clock."
+
+Translation: I talk too much.
+
+She's right. And I'm still working on it. I sat down with @Connor Diemand-Yauman and @Rebecca Taber Staehelin to talk about the communication challenges we all still face, even after teaching this stuff for years.
+
+Link in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'matt-linkedin-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                    <div class="option-label">Option 3 — Book tie-in</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">Most people think good communication means having the right words ready.
+
+It doesn't. It means being willing to get it wrong.
+
+I joined fellow GSB faculty @Connor Diemand-Yauman and alum @Rebecca Taber Staehelin for a conversation about anxiety, spontaneity, and what happens when a communication expert admits he's still figuring it out.
+
+Link in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'matt-linkedin-3')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">X/Twitter post - ready to go</div>
+                            <div class="task-description">Trailer video optional here. Episode link included in the copy below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @Abrahams_Matt</span>
+                                </div>
+                                <div class="post-text">A student in my class froze during an exercise. Not because he didn't know the answer. Because he wasn't being "wrong enough."
+
+That moment says everything about how we judge our own communication.
+
+New conversation with @connordy on @isthisworkingpod: linktr.ee/isthisworkingpod</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-twitter')">Copy text</button>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('matt-twitter-options')">+ 1 more option</span>
+                                <div id="matt-twitter-options" class="more-options">
+                                    <div class="option-label">Option 2</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">My mom's advice: "Tell the time, don't build the clock."
+
+Translation: I talk too much.
+
+She's right. Sat down with @connordy to talk about what even communication experts still get wrong: linktr.ee/isthisworkingpod</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'matt-twitter-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Instagram - post directly or accept our collab</div>
+                            <div class="task-description">Two options: post the trailer video yourself from @mattabrahams (grab it from the Downloads tab), or we'll send a collab request from @isthisworkingpod that you can accept so it shows on both accounts. Either works! If posting directly, consider adding the Linktree (linktr.ee/isthisworkingpod) to Matt's IG bio temporarily.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram — @mattabrahams</span>
+                                </div>
+                                <div class="post-text">A student in my class couldn't speak during an exercise. Not because he didn't know the answer. Because he felt he wasn't being "wrong enough."
+
+I sat down with @connordiemandyauman and Rebecca Taber Staehelin to talk about anxiety, spontaneity, and what it actually looks like to communicate authentically.
+
+Episode out now. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-ig')">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Friday, Mar 13 — Clip 1: "Rebecca Gets Roasted at GSB"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 1: "Rebecca Gets Roasted at GSB" - post or collab (optional)</div>
+                            <div class="task-description">This clip is mainly aimed at the GSB audience, but you're welcome to share it too. Post directly from @mattabrahams, accept our IG collab from @isthisworkingpod, or just share to stories.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">"I thought I was crushing it." @stanfordgsb alum Rebecca Taber Staehelin shares what happened when her interpersonal dynamics class finally turned the spotlight on her.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-clip1-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Monday, Mar 16 — Clip 2: "Not Being Wrong Enough"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 2: "Not Being Wrong Enough" - post or collab</div>
+                            <div class="task-description">This one's a great fit for your channels. Ties directly to Think Faster, Talk Smarter. Post directly from @mattabrahams or accept our IG collab from @isthisworkingpod.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">A student in my class couldn't speak. Not because he didn't know the answer, but because he felt he wasn't being "wrong enough." The full story is in this clip from @isthisworkingpod. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-clip2-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Wednesday, Mar 18 — Clip 3: "Michael Lewis Says Stop Being Perfect"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 3: "Michael Lewis Says Stop Being Perfect" - post or collab (optional)</div>
+                            <div class="task-description">Connor shares a moment from his GSB class where Michael Lewis was guest lecturing. This is more of a Connor/GSB clip, but you're welcome to share it.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">Michael Lewis guest lectured in @connordiemandyauman's GSB class and told a student the one thing that kills a great presentation. From @isthisworkingpod.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-clip3-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Week of Mar 20 — Clip 4: "What Does the Master Work On"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 4: "What Does the Master Work On" - post or collab</div>
+                            <div class="task-description">A great one for your audience. You open up about what you still work on, including your mom's "tell the time, don't build the clock" advice. Post directly or accept our collab.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">"Tell the time, don't build the clock." My mom's way of saying I talk too much. She's right. Here's what a communication expert still works on. Full clip from @isthisworkingpod.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'matt-clip4-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THINK FAST, TALK SMART CHECKLIST -->
+        <div id="tfts-checklist" class="checklist-section">
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Wednesday, Mar 11 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">LinkedIn - repost Matt's or use the standalone version</div>
+                            <div class="task-description">Once Matt posts, you can repost from the TFTS page. Or use the standalone version below if you'd rather post fresh.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — Think Fast, Talk Smart (repost comment)</span>
+                                </div>
+                                <div class="post-text">Our host on what happens when a communication expert gets coached live. Full episode out now.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-linkedin-repost')">Copy text</button>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('tfts-linkedin-options')">+ 1 more option</span>
+                                <div id="tfts-linkedin-options" class="more-options">
+                                    <div class="option-label">Option 2 — Independent post</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">What does the world's leading communication expert still work on?
+
+In a new episode of Is This Working?!, @Matt Abrahams sits down with fellow GSB faculty member @Connor Diemand-Yauman and GSB alum @Rebecca Taber Staehelin for a live coaching session on anxiety, spontaneity, and showing up authentically.
+
+Spoiler: even Matt still gets nervous.
+
+Full episode in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'tfts-linkedin-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">X/Twitter - quote tweet Matt or post standalone</div>
+                            <div class="task-description">A quote tweet of Matt's post is the easiest move. Standalone option below if you'd prefer.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — Think Fast, Talk Smart (quote tweet)</span>
+                                </div>
+                                <div class="post-text">Our host gets coached live. This one's different.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-twitter')">Copy text</button>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('tfts-twitter-options')">+ 1 more option</span>
+                                <div id="tfts-twitter-options" class="more-options">
+                                    <div class="option-label">Option 2 — Standalone quote</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">"Connection, not perfection." @Abrahams_Matt on what he still works on after decades of teaching communication.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this, 'tfts-twitter-2')">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Instagram - post directly or accept our collab</div>
+                            <div class="task-description">Two options: post the trailer video yourself from @thinkfasttalksmart (grab it from the Downloads tab), or we'll send a collab request from @isthisworkingpod. Either works! If posting directly, the episode Linktree is linktr.ee/isthisworkingpod.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram — Think Fast, Talk Smart (@thinkfasttalksmart)</span>
+                                </div>
+                                <div class="post-text">What does a communication expert still work on? More than you'd think.
+
+@mattabrahams sits down with @connordiemandyauman and Rebecca Taber Staehelin for a live coaching session on anxiety, spontaneity, and showing up authentically.
+
+Episode out now. Link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-ig')">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Friday, Mar 13 — Clip 1: "Rebecca Gets Roasted at GSB"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 1: "Rebecca Gets Roasted at GSB" - post or collab (optional)</div>
+                            <div class="task-description">This clip is GSB-focused, but feel free to share from @thinkfasttalksmart too. Post directly, accept our IG collab from @isthisworkingpod, or share to stories.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">"I thought I was crushing it." GSB alum Rebecca Taber Staehelin shares what happened when her interpersonal dynamics class finally turned the spotlight on her. From the latest episode of @isthisworkingpod.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-clip1-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Monday, Mar 16 — Clip 2: "Not Being Wrong Enough"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 2: "Not Being Wrong Enough" - post or collab</div>
+                            <div class="task-description">From @mattabrahams' own classroom. Great fit for @thinkfasttalksmart. Post directly or accept our IG collab.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">A student in @mattabrahams' class couldn't speak. Not because he didn't know the answer, but because he felt he wasn't being "wrong enough." Full clip from @isthisworkingpod.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-clip2-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Wednesday, Mar 18 — Clip 3: "Michael Lewis Says Stop Being Perfect"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 3: "Michael Lewis Says Stop Being Perfect" - post or collab (optional)</div>
+                            <div class="task-description">Connor's classroom story with Michael Lewis. More of a GSB/Connor clip, but feel free to share from TFTS.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">Michael Lewis guest lectured in @connordiemandyauman's GSB class and told a student the one thing that kills a great presentation. From @isthisworkingpod.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-clip3-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Week of Mar 20 — Clip 4: "What Does the Master Work On"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Clip 4: "What Does the Master Work On" - post or collab</div>
+                            <div class="task-description">@mattabrahams opens up about what he still works on. Great for the TFTS audience. Post directly or accept our collab.</div>
+                            <div class="post-preview" style="margin-top: 12px;">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Suggested IG caption</span>
+                                </div>
+                                <div class="post-text">What does a communication expert still work on? @mattabrahams on "tell the time, don't build the clock" and what he's still figuring out. From @isthisworkingpod.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this, 'tfts-clip4-ig')">Copy text</button>
+                                </div>
+                            </div>
+                            <div class="task-description" style="margin-top: 8px;">Grab the clip here:</div>
+                            <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank" class="download-link" style="margin-top: 8px; display: inline-block;">↓ Download clips from Drive</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FULL SCHEDULE -->
+        <div id="all-checklist" class="checklist-section">
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Wednesday, Mar 11 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Episode goes live on all platforms <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">YouTube, Apple Podcasts, Spotify - nothing needed from you here</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt's LinkedIn post goes up</div>
+                            <div class="task-description">With trailer video attached</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Connor's LinkedIn post goes up <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">ITW launch post with trailer</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Think Fast, Talk Smart shares on LinkedIn</div>
+                            <div class="task-description">Repost Matt's or use standalone version, after Matt posts</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt's X/Twitter post goes up</div>
+                            <div class="task-description">With episode link</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Think Fast, Talk Smart shares on X</div>
+                            <div class="task-description">Quote tweet Matt's post</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt's Instagram post goes up</div>
+                            <div class="task-description">Trailer video</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">ITW trailer goes up on Instagram + TikTok <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">@isthisworkingpod</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Think Fast, Talk Smart Instagram post goes up</div>
+                            <div class="task-description">Trailer video</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Friday, Mar 13 — Clip 1: "Rebecca Gets Roasted at GSB"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">@isthisworkingpod posts Clip 1 <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Stanford GSB: IG collab <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">Top pick for GSB</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt + TFTS: optional share</div>
+                            <div class="task-description">Post directly or accept collab</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Monday, Mar 16 — Clip 2: "Not Being Wrong Enough"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">@isthisworkingpod posts Clip 2 <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt + TFTS + GSB: IG collab</div>
+                            <div class="task-description">GSB classroom story, ties to Matt's book. Strong across all channels.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Wednesday, Mar 18 — Clip 3: "Michael Lewis Says Stop Being Perfect"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">@isthisworkingpod posts Clip 3 <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">GSB: IG collab <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">Connor's GSB classroom story with Michael Lewis</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt + TFTS: optional share</div>
+                            <div class="task-description">More of a Connor/GSB clip but welcome to share</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header" onclick="toggleDay(this)">
+                    <span class="day-chevron">▶</span>
+                    <div class="day-title">Week of Mar 20 — Clip 4: "What Does the Master Work On"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">@isthisworkingpod posts Clip 4 <span style="color: var(--text-muted); font-weight: normal; font-size: 0.8rem;">(ITW handles this)</span></div>
+                            <div class="task-description">IG Reels + TikTok</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Matt + TFTS: post or collab</div>
+                            <div class="task-description">Matt's personal/humanizing moment. Great for his channels.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ASSETS & LINKS -->
+        <div id="assets-checklist" class="checklist-section">
+            <div class="links-section">
+                <h2>Episode Links</h2>
+                <div class="link-row">
+                    <span class="link-label">Linktree (all platforms)</span>
+                    <a href="https://linktr.ee/isthisworkingpod" target="_blank" class="link-value">linktr.ee/isthisworkingpod</a>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">YouTube</span>
+                    <span class="link-value placeholder">Live on Mar 11</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Apple Podcasts</span>
+                    <span class="link-value placeholder">Live on Mar 11</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Spotify</span>
+                    <span class="link-value placeholder">Live on Mar 11</span>
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 16px; color: var(--yellow);">Download Assets</h2>
+            <div class="assets-grid">
+                <div class="asset-card">
+                    <h3>Trailer Video</h3>
+                    <p>Full episode teaser, all platforms</p>
+                    <span class="placeholder">Coming soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 1: "Rebecca Gets Roasted at GSB"</h3>
+                    <p>Rebecca's interpersonal dynamics class story (~60 sec)</p>
+                    <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank">↓ Download from Drive</a>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 2: "Not Being Wrong Enough"</h3>
+                    <p>Matt's classroom exercise story (~90 sec)</p>
+                    <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank">↓ Download from Drive</a>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 3: "Michael Lewis Says Stop Being Perfect"</h3>
+                    <p>Connor's GSB classroom story (~60 sec)</p>
+                    <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank">↓ Download from Drive</a>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 4: "What Does the Master Work On"</h3>
+                    <p>Matt on what he still works on (~2 min)</p>
+                    <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank">↓ Download from Drive</a>
+                </div>
+                <div class="asset-card">
+                    <h3>Episode Thumbnail</h3>
+                    <p>For YouTube/social sharing</p>
+                    <a href="https://drive.google.com/drive/folders/1NzfYqu_ZzkUlLykIskjb11m-poZ0Dvrz?usp=sharing" target="_blank">↓ Download from Drive</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <h3>How do IG collabs work?</h3>
+            <p>When we post a clip, we'll send a collaboration request to your Instagram account from @isthisworkingpod. You'll get a notification. Accept it and the clip will show on your profile too. Or just share it to your Stories - either one works great.</p>
+            <p style="margin-top: 12px;">Questions? Reach out to <strong>Brittany</strong> or <strong>Alex</strong> on the ITW team.</p>
+            <p style="margin-top: 12px;"><a href="mailto:bdavis@meritamerica.org" style="color: var(--yellow); text-decoration: none; font-weight: 600;">bdavis@meritamerica.org</a> · <a href="mailto:alex.dobrenko@meritamerica.org" style="color: var(--yellow); text-decoration: none; font-weight: 600;">alex.dobrenko@meritamerica.org</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleDay(header) {
+            header.classList.toggle('open');
+            const content = header.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // Open the first day section in each checklist by default
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.checklist-section').forEach(section => {
+                const firstHeader = section.querySelector('.day-header');
+                const firstContent = section.querySelector('.day-content');
+                if (firstHeader && firstContent) {
+                    firstHeader.classList.add('open');
+                    firstContent.classList.add('open');
+                }
+            });
+        });
+
+        function showRole(role) {
+            // Update buttons
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.role-btn').classList.add('active');
+
+            // Hide all checklists
+            document.querySelectorAll('.checklist-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected checklist
+            document.getElementById(role + '-checklist').classList.add('active');
+        }
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+        }
+
+        function copyText(btn, id) {
+            const postText = btn.closest('.post-preview').querySelector('.post-text').innerText;
+            navigator.clipboard.writeText(postText).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy text';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function toggleOptions(id) {
+            const options = document.getElementById(id);
+            options.classList.toggle('show');
+            const toggle = options.previousElementSibling;
+            if (options.classList.contains('show')) {
+                toggle.textContent = '- Hide options';
+            } else {
+                toggle.textContent = toggle.dataset.original || '+ more options';
+            }
+        }
+    </script>
+</body>
+</html>
