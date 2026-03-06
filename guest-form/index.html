@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Info — Is This Working?!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --yellow: #f0c000;
+            --yellow-light: #ffd740;
+            --yellow-glow: rgba(240, 192, 0, 0.12);
+            --dark: #161618;
+            --darker: #0e0e10;
+            --gray: #1e1e22;
+            --gray-light: #2a2a30;
+            --gray-mid: #38383f;
+            --text: #eaeaec;
+            --text-muted: #8a8a94;
+            --radius: 10px;
+            --radius-lg: 16px;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background: var(--dark);
+            padding: 40px 24px 36px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+        }
+
+        .header-content {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .show-name {
+            color: var(--yellow);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .form-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--yellow);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Fields */
+        .field {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        label .req {
+            color: var(--yellow);
+            margin-left: 2px;
+        }
+
+        label .hint {
+            color: var(--text-muted);
+            font-weight: 400;
+            font-size: 0.8rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            background: var(--gray);
+            border: 1px solid var(--gray-mid);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            padding: 10px 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--yellow);
+            box-shadow: 0 0 0 3px var(--yellow-glow);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--gray-mid);
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        /* Radio + Checkbox groups */
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 400;
+            cursor: pointer;
+            padding: 8px 12px;
+            background: var(--gray);
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .option-group label:hover {
+            border-color: var(--gray-mid);
+            background: var(--gray-light);
+        }
+
+        .option-group input[type="radio"],
+        .option-group input[type="checkbox"] {
+            accent-color: var(--yellow);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Checkbox grid for platform prefs */
+        .check-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        @media (max-width: 500px) {
+            .check-grid { grid-template-columns: 1fr; }
+        }
+
+        .check-grid label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 400;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            background: var(--gray);
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .check-grid label:hover {
+            border-color: var(--gray-mid);
+            background: var(--gray-light);
+        }
+
+        .check-grid input[type="checkbox"] {
+            accent-color: var(--yellow);
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Conditional section */
+        .conditional {
+            display: none;
+            padding: 20px;
+            background: var(--dark);
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-lg);
+            margin-top: 16px;
+        }
+
+        .conditional.show { display: block; }
+
+        .conditional .field:last-child { margin-bottom: 0; }
+
+        /* Submit */
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--yellow);
+            color: var(--darker);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--yellow-glow);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Divider */
+        hr {
+            border: none;
+            height: 1px;
+            background: var(--gray-light);
+            margin: 40px 0;
+        }
+
+        /* Success state */
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 60px 24px;
+        }
+
+        .success-msg h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .success-msg p {
+            color: var(--text-muted);
+        }
+
+        .success-msg .check {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <div class="show-name">IS THIS WORKING?!</div>
+        <h1>Guest Info</h1>
+        <p>Thanks for coming on the pod. This helps us get your handles, bios, and links right so we can coordinate promotion. Takes about 3 minutes.</p>
+    </div>
+</div>
+
+<div class="form-wrap">
+    <form id="guestForm">
+
+        <!-- About You -->
+        <div class="section">
+            <div class="section-title">About You</div>
+            <div class="field">
+                <label>Full name <span class="req">*</span></label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="field">
+                <label>Role / title <span class="hint">(for bios and captions)</span> <span class="req">*</span></label>
+                <input type="text" name="role" placeholder="e.g. CEO at Acme, Author of The Book" required>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Your Social Handles -->
+        <div class="section">
+            <div class="section-title">Your Social Handles</div>
+            <div class="section-desc">Drop the handles/URLs where you're personally active. Leave blank any you don't use.</div>
+            <div class="field">
+                <label>LinkedIn profile URL</label>
+                <input type="url" name="linkedin" placeholder="https://linkedin.com/in/yourname">
+            </div>
+            <div class="field">
+                <label>X / Twitter</label>
+                <input type="text" name="twitter" placeholder="@yourhandle">
+            </div>
+            <div class="field">
+                <label>Instagram</label>
+                <input type="text" name="instagram" placeholder="@yourhandle">
+            </div>
+            <div class="field">
+                <label>TikTok</label>
+                <input type="text" name="tiktok" placeholder="@yourhandle">
+            </div>
+            <div class="field">
+                <label>YouTube channel</label>
+                <input type="url" name="youtube" placeholder="https://youtube.com/@yourchannel">
+            </div>
+            <div class="field">
+                <label>Other platforms</label>
+                <textarea name="other_platforms" placeholder="Threads, Bluesky, Substack, podcast, etc."></textarea>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Brand / Org Accounts -->
+        <div class="section">
+            <div class="section-title">Brand / Organization Accounts</div>
+            <div class="field">
+                <label>Do you have a company, podcast, or project with its own social accounts?</label>
+                <div class="option-group">
+                    <label><input type="radio" name="has_brand" value="yes" onchange="toggleBrand(true)"> Yes</label>
+                    <label><input type="radio" name="has_brand" value="no" onchange="toggleBrand(false)"> No, skip this</label>
+                </div>
+            </div>
+
+            <div class="conditional" id="brandSection">
+                <div class="field">
+                    <label>Brand / org name</label>
+                    <input type="text" name="brand_name" placeholder="e.g. Think Fast Talk Smart, California Forever">
+                </div>
+                <div class="field">
+                    <label>Brand LinkedIn</label>
+                    <input type="url" name="brand_linkedin" placeholder="https://linkedin.com/company/...">
+                </div>
+                <div class="field">
+                    <label>Brand X / Twitter</label>
+                    <input type="text" name="brand_twitter" placeholder="@brandhandle">
+                </div>
+                <div class="field">
+                    <label>Brand Instagram</label>
+                    <input type="text" name="brand_instagram" placeholder="@brandhandle">
+                </div>
+                <div class="field">
+                    <label>Other brand accounts</label>
+                    <textarea name="brand_other" placeholder="TikTok, YouTube, etc."></textarea>
+                </div>
+                <div class="field">
+                    <label>Who manages the brand socials? <span class="hint">(name + email)</span></label>
+                    <textarea name="brand_contact" placeholder="e.g. Sarah Chen, sarah@company.com"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Posting & Promotion -->
+        <div class="section">
+            <div class="section-title">Posting & Promotion</div>
+            <div class="section-desc">We'll put together social copy and clips for you. These questions help us know what you're open to.</div>
+
+            <div class="field">
+                <label>Are you open to posting about the episode from your personal accounts? <span class="req">*</span></label>
+                <div class="option-group">
+                    <label><input type="radio" name="personal_posting" value="yes" required> Yes, happy to post</label>
+                    <label><input type="radio" name="personal_posting" value="team"> My team handles my posting</label>
+                    <label><input type="radio" name="personal_posting" value="no"> I'd prefer not to</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Brand/org account posting?</label>
+                <div class="option-group">
+                    <label><input type="radio" name="brand_posting" value="yes"> Yes</label>
+                    <label><input type="radio" name="brand_posting" value="na"> N/A, no brand account</label>
+                    <label><input type="radio" name="brand_posting" value="check"> Need to check with the team</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>LinkedIn</label>
+                <div class="check-grid">
+                    <label><input type="checkbox" name="li_pref" value="own_post"> I'll write my own post</label>
+                    <label><input type="checkbox" name="li_pref" value="draft"> Send me a draft</label>
+                    <label><input type="checkbox" name="li_pref" value="reshare"> I'll reshare your post</label>
+                    <label><input type="checkbox" name="li_pref" value="engage"> Tag me and I'll engage</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Instagram</label>
+                <div class="check-grid">
+                    <label><input type="checkbox" name="ig_pref" value="feed"> I'll post to my feed</label>
+                    <label><input type="checkbox" name="ig_pref" value="stories"> I'll share to Stories</label>
+                    <label><input type="checkbox" name="ig_pref" value="collab"> I'll accept a collab invite</label>
+                    <label><input type="checkbox" name="ig_pref" value="repost"> Send me clips to repost</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>X / Twitter</label>
+                <div class="check-grid">
+                    <label><input type="checkbox" name="x_pref" value="post"> I'll post / quote tweet</label>
+                    <label><input type="checkbox" name="x_pref" value="rt"> I'll retweet your post</label>
+                    <label><input type="checkbox" name="x_pref" value="engage"> Tag me and I'll engage</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Newsletter</label>
+                <div class="option-group">
+                    <label><input type="radio" name="newsletter" value="yes"> Yes, I'll include the episode</label>
+                    <label><input type="radio" name="newsletter" value="maybe"> I have one, but probably not</label>
+                    <label><input type="radio" name="newsletter" value="no"> No newsletter</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Other channels you'd share through?</label>
+                <textarea name="other_channels" placeholder="Slack communities, Discord, podcast, email list, etc."></textarea>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Assets -->
+        <div class="section">
+            <div class="section-title">Assets</div>
+
+            <div class="field">
+                <label>Do you have b-roll footage we could use in the trailer?</label>
+                <div class="section-desc" style="margin-bottom: 8px;">Keynotes, teaching, behind-the-scenes, etc.</div>
+                <div class="option-group">
+                    <label><input type="radio" name="broll" value="yes" onchange="toggleBroll(true)"> Yes</label>
+                    <label><input type="radio" name="broll" value="no" onchange="toggleBroll(false)"> No</label>
+                    <label><input type="radio" name="broll" value="check" onchange="toggleBroll(false)"> I can check</label>
+                </div>
+            </div>
+
+            <div class="field" id="brollLink" style="display:none;">
+                <label>Link to b-roll</label>
+                <input type="url" name="broll_link" placeholder="Google Drive, Dropbox, etc.">
+            </div>
+
+            <div class="field">
+                <label>Headshot or press photos <span class="hint">(link to file or folder)</span></label>
+                <input type="url" name="headshot_link" placeholder="https://...">
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Team & Coordination -->
+        <div class="section">
+            <div class="section-title">Team & Coordination</div>
+
+            <div class="field">
+                <label>Does someone else handle your social media? <span class="req">*</span></label>
+                <div class="option-group">
+                    <label><input type="radio" name="social_team" value="self" required onchange="toggleTeam(false)"> No, I handle it myself</label>
+                    <label><input type="radio" name="social_team" value="internal" onchange="toggleTeam(true)"> Yes, someone on my team</label>
+                    <label><input type="radio" name="social_team" value="external" onchange="toggleTeam(true)"> Yes, an external agency/person</label>
+                </div>
+            </div>
+
+            <div class="conditional" id="teamSection">
+                <div class="field">
+                    <label>Who should we coordinate with? <span class="hint">(name + email)</span></label>
+                    <textarea name="team_contact" placeholder="e.g. Jamie Rivera, jamie@company.com"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Best contact for launch day coordination?</label>
+                <textarea name="launch_contact" placeholder="Name + email, or 'same as above'"></textarea>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Anything Else -->
+        <div class="section">
+            <div class="section-title">Anything Else</div>
+            <div class="field">
+                <label>Anything we should know about how you or your team handle social/promo?</label>
+                <textarea name="anything_else" placeholder="Approval processes, timing preferences, things to avoid, etc."></textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+        <div class="check">&#10003;</div>
+        <h2>Got it, thanks!</h2>
+        <p>We'll use this to put together your launch materials. If anything changes, just fill this out again or shoot us an email.</p>
+    </div>
+</div>
+
+<script>
+    function toggleBrand(show) {
+        document.getElementById('brandSection').classList.toggle('show', show);
+    }
+
+    function toggleBroll(show) {
+        document.getElementById('brollLink').style.display = show ? 'block' : 'none';
+    }
+
+    function toggleTeam(show) {
+        document.getElementById('teamSection').classList.toggle('show', show);
+    }
+
+    document.getElementById('guestForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Collect form data
+        const data = Object.fromEntries(new FormData(this));
+
+        // Collect checkbox arrays
+        const checkboxFields = ['li_pref', 'ig_pref', 'x_pref'];
+        checkboxFields.forEach(name => {
+            const checked = [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
+            data[name] = checked;
+        });
+
+        console.log('Form submission:', JSON.stringify(data, null, 2));
+
+        // TODO: POST to backend endpoint
+        // fetch('/api/guest-form', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) })
+
+        // Show success
+        this.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
