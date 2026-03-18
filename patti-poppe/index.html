@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patti Poppe Episode — Launch Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --yellow: #f5c518;
+            --yellow-light: #ffd84d;
+            --dark: #1a1a1a;
+            --darker: #111;
+            --gray: #2a2a2a;
+            --gray-light: #3a3a3a;
+            --text: #e8e8e8;
+            --text-muted: #999;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--dark);
+            padding: 32px 20px;
+            border-bottom: 3px solid var(--yellow);
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .show-name {
+            color: var(--yellow);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .episode-info {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .launch-badge {
+            background: var(--yellow);
+            color: var(--dark);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .launch-badge .date {
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Overview section */
+        .overview-section {
+            background: var(--dark);
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .overview-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+
+        .overview-content h2 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .overview-content > p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .tldr-box {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .tldr-box h3 {
+            color: var(--yellow);
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .tldr-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tldr-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .tldr-number {
+            width: 28px;
+            height: 28px;
+            background: var(--yellow);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .tldr-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tldr-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .overview-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Role selector */
+        .role-selector {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray);
+        }
+
+        .role-selector h2 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--yellow);
+        }
+
+        .role-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .role-btn {
+            padding: 14px 24px;
+            background: var(--gray);
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .role-btn:hover {
+            border-color: var(--yellow);
+        }
+
+        .role-btn.active {
+            background: var(--yellow);
+            color: var(--dark);
+            border-color: var(--yellow);
+            font-weight: 600;
+        }
+
+        .role-btn small {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* Checklist view */
+        .checklist-section {
+            display: none;
+        }
+
+        .checklist-section.active {
+            display: block;
+        }
+
+        .day-section {
+            background: var(--dark);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+        }
+
+        .day-header {
+            background: var(--gray);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .day-badge {
+            background: var(--yellow);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .day-badge.clip {
+            background: var(--gray-light);
+            color: var(--text);
+        }
+
+        .day-content {
+            padding: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--gray);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+
+        .task-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--yellow);
+            border-radius: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .task-checkbox.checked {
+            background: var(--yellow);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .task-details {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .task-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .task-action {
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            padding: 10px 16px;
+            background: var(--yellow);
+            color: var(--dark);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--yellow-light);
+        }
+
+        .action-btn.secondary {
+            background: var(--gray-light);
+            color: var(--text);
+        }
+
+        /* Post preview */
+        .post-preview {
+            background: var(--darker);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+            border: 1px solid var(--gray);
+        }
+
+        .post-preview-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .platform-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .platform-dot.linkedin { background: #0077b5; }
+        .platform-dot.twitter { background: #1da1f2; }
+        .platform-dot.instagram { background: #e4405f; }
+        .platform-dot.tiktok { background: #ff0050; }
+
+        .post-text {
+            font-size: 0.95rem;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .copy-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            padding: 8px 16px;
+            background: var(--gray-light);
+            color: var(--text);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--yellow);
+            color: var(--dark);
+        }
+
+        .copy-btn.copied {
+            background: #22c55e;
+            color: white;
+        }
+
+        .download-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--gray-light);
+            color: var(--yellow);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .download-link:hover {
+            background: var(--yellow);
+            color: var(--dark);
+        }
+
+        /* Options toggle */
+        .options-toggle {
+            color: var(--yellow);
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .options-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .more-options {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .more-options.show {
+            display: block;
+        }
+
+        .option-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+
+        /* Clip info card */
+        .clip-info-card {
+            background: var(--gray);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--yellow);
+        }
+
+        .clip-info-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: var(--yellow);
+        }
+
+        .clip-info-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .clip-info-card .why-it-works {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        /* Trailer section */
+        .trailer-card {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gray-light);
+        }
+
+        .trailer-card h3 {
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .timecode-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .timecode-table th {
+            text-align: left;
+            padding: 8px 12px;
+            background: var(--gray-light);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timecode-table th:first-child { border-radius: 6px 0 0 6px; }
+        .timecode-table th:last-child { border-radius: 0 6px 6px 0; }
+
+        .timecode-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--gray-light);
+            vertical-align: top;
+        }
+
+        .timecode-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .beat-label {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .beat-label.hook { background: #7c3aed; color: white; }
+        .beat-label.stakes { background: #dc2626; color: white; }
+        .beat-label.turn { background: #059669; color: white; }
+        .beat-label.loop { background: #2563eb; color: white; }
+
+        .timecode {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Distribution table */
+        .dist-table-wrap {
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+
+        .dist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .dist-table th {
+            text-align: center;
+            padding: 8px 10px;
+            background: var(--gray-light);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .dist-table th:first-child {
+            text-align: left;
+            border-radius: 6px 0 0 6px;
+        }
+
+        .dist-table th:last-child {
+            border-radius: 0 6px 6px 0;
+        }
+
+        .dist-table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--gray-light);
+            text-align: center;
+        }
+
+        .dist-table td:first-child {
+            text-align: left;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .dist-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .dist-yes {
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        .dist-opt {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .dist-no {
+            color: var(--gray-light);
+        }
+
+        /* Assets section */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .asset-card {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--gray);
+        }
+
+        .asset-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .asset-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .asset-card a, .asset-card .placeholder {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--yellow);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .asset-card .placeholder {
+            background: var(--gray);
+            color: var(--text-muted);
+        }
+
+        /* Links section */
+        .links-section {
+            background: var(--dark);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray);
+        }
+
+        .links-section h2 {
+            color: var(--yellow);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .link-row:last-child {
+            border-bottom: none;
+        }
+
+        .link-label {
+            font-size: 0.95rem;
+        }
+
+        .link-value {
+            color: var(--yellow);
+            text-decoration: none;
+        }
+
+        .link-value.placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Schedule table */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .schedule-table th {
+            text-align: left;
+            padding: 8px 12px;
+            background: var(--gray-light);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-table th:first-child { border-radius: 6px 0 0 6px; }
+        .schedule-table th:last-child { border-radius: 0 6px 6px 0; }
+
+        .schedule-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .time-col {
+            white-space: nowrap;
+            color: var(--yellow);
+            font-weight: 500;
+        }
+
+        .who-col {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .schedule-section-header {
+            background: var(--gray);
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Next steps checklist */
+        .next-steps-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps-list li {
+            display: flex;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--gray);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            align-items: flex-start;
+            font-size: 0.9rem;
+        }
+
+        .next-steps-list li .ns-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--yellow);
+            border-radius: 4px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .next-steps-list li .ns-check.checked {
+            background: var(--yellow);
+        }
+
+        .next-steps-list li .ns-check.checked::after {
+            content: '✓';
+            color: var(--dark);
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Help section */
+        .help-section {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 40px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .help-section h3 {
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .help-section p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header-top {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .role-buttons {
+                flex-direction: column;
+            }
+
+            .role-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div>
+                    <div class="show-name">Is This Working?!</div>
+                    <h1>Patti Poppe — Launch Guide</h1>
+                    <p class="episode-info">CEO of PG&amp;E — Crisis, Turnaround, and Leading When the Stakes Are Real</p>
+                </div>
+                <div class="launch-badge">
+                    <div>LAUNCH DAY</div>
+                    <div class="date">Wed, March 25</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overview-section">
+        <div class="overview-content">
+            <h2>Hey Patti and PG&amp;E team!</h2>
+            <p>We're excited to launch this episode on March 25. We've prepared all the social copy and distribution plans for you. Everything is ready to go — just pick whatever feels right and paste it in.</p>
+
+            <div class="tldr-box">
+                <h3>The game plan</h3>
+                <div class="tldr-items">
+                    <div class="tldr-item">
+                        <span class="tldr-number">1</span>
+                        <div>
+                            <strong>Launch Day (Wed March 25)</strong>
+                            <p>Patti's personal LinkedIn post + trailer. PG&amp;E corporate LinkedIn and X. Connor's post. We wrote all the copy — use whichever version fits your voice and paste it in.</p>
+                        </div>
+                    </div>
+                    <div class="tldr-item">
+                        <span class="tldr-number">2</span>
+                        <div>
+                            <strong>Clips (Thu 3/26 through Fri 4/3)</strong>
+                            <p>Four clips rolling out over the week after launch. We'll post from @isthisworkingpod. We'd love for Patti's team and PG&amp;E to post them too — totally optional. Just accept the IG collab requests or share to stories.</p>
+                        </div>
+                    </div>
+                    <div class="tldr-item">
+                        <span class="tldr-number">3</span>
+                        <div>
+                            <strong>One heads-up for PG&amp;E</strong>
+                            <p>If your social team needs internal approval time, flag it now. We'd need assets to you by Tuesday 3/18 to hit a 3/25 launch. Happy to send them early.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="overview-note">Use the tabs below to see what's prepared for each account. All copy is ready to paste. Questions? Contact <strong style="color: var(--text);">Lauren</strong> on the ITW team.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Role Selector -->
+        <div class="role-selector">
+            <h2>I'm posting for...</h2>
+            <div class="role-buttons">
+                <button class="role-btn active" onclick="showRole('patti')">
+                    Patti's Accounts
+                    <small>@PattiPoppe</small>
+                </button>
+                <button class="role-btn" onclick="showRole('pge')">
+                    PG&amp;E
+                    <small>Corporate pages</small>
+                </button>
+                <button class="role-btn" onclick="showRole('all')">
+                    Full Timeline
+                    <small>Everyone + schedule</small>
+                </button>
+                <button class="role-btn" onclick="showRole('clips')">
+                    Clips &amp; Copy
+                    <small>All 4 clips</small>
+                </button>
+                <button class="role-btn" onclick="showRole('assets')">
+                    Downloads
+                    <small>Videos &amp; links</small>
+                </button>
+            </div>
+        </div>
+
+        <!-- PATTI'S CHECKLIST -->
+        <div id="patti-checklist" class="checklist-section active">
+
+            <!-- Trailer info -->
+            <div class="trailer-card">
+                <h3>The Trailer — Trent Framework Recut</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">Built on the Trent structure: hook, stakes, the turn, the loop. Timecodes for the edit:</p>
+                <table class="timecode-table">
+                    <thead>
+                        <tr>
+                            <th>Beat</th>
+                            <th>Line</th>
+                            <th>Timecode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="beat-label hook">HOOK</span></td>
+                            <td>"People were going to die"</td>
+                            <td><span class="timecode">00:30:12:14</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="beat-label stakes">STAKES</span></td>
+                            <td>"Every 90-100 days"</td>
+                            <td><span class="timecode">00:16:12:02</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="beat-label stakes">STAKES</span></td>
+                            <td>"84 counts"</td>
+                            <td><span class="timecode">00:01:49:06</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="beat-label turn">THE TURN</span></td>
+                            <td>"Were you afraid?"</td>
+                            <td><span class="timecode">00:27:50:05</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="beat-label loop">THE LOOP</span></td>
+                            <td>"Is this working?"</td>
+                            <td><span class="timecode">00:18:11:05</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="beat-label loop">THE LOOP</span></td>
+                            <td>"Second fatality, third, fourth"</td>
+                            <td><span class="timecode">00:18:23:15</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, March 25 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">LinkedIn post — ready to go</div>
+                            <div class="task-description">Attach the trailer video. Add the episode link as your first comment after posting.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — Patti Poppe</span>
+                                </div>
+                                <div class="post-text">The coldest day in Michigan history. A gas compressor station explodes. One of my workers walks up to me and says: "We're losing it."
+
+I knew what that meant. People were going to die if we lost the gas system.
+
+We did something no utility had ever done: Facebook Live. We asked 2 million Michigan residents to turn their thermostats to 65 degrees. In the middle of winter. At 11pm.
+
+They did it.
+
+I sat down with @Connor Diemand-Yauman on Is This Working?! to talk about that night, what it means to lead when you can't wait for filtered reports, and why the hardest decisions are usually the clearest ones.
+
+Full episode in the comments.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('patti-linkedin-options')">+ 2 more options</span>
+                                <div id="patti-linkedin-options" class="more-options">
+                                    <div class="option-label">Option 2 — Culture and leadership angle</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">People ask me what a turnaround actually looks like from the inside.
+
+It's not a strategy deck. It's going to Chico when everyone tells you not to. It's standing in front of a camera when you don't know if it'll work. It's being in the room when someone says "we're losing it" — and deciding what to do next.
+
+I talked with @Connor Diemand-Yauman about all of it on Is This Working?! — the decisions behind the PG&E transformation, what I learned about leadership under pressure, and why "is this working?" is the question I never stop asking.
+
+Link in comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                        </div>
+                                    </div>
+                                    <div class="option-label">Option 3 — Shorter, personal</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">I met my niece's boyfriend at a keg at a graduation party. He told me his job was "just a means to an end."
+
+I told my niece: do not marry this man.
+
+Find work that calls your heart. That's the whole thing.
+
+New episode with @Connor Diemand-Yauman — full conversation in the comments.</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">X/Twitter post — ready to go</div>
+                            <div class="task-description">Attach the trailer video (9x16 vertical). Add the episode link where [LINK] appears.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @PattiPoppe</span>
+                                </div>
+                                <div class="post-text">The coldest day in Michigan history. Gas system failing. People would die.
+
+We did a Facebook Live and asked 2M people to turn their heat down to 65.
+
+At 11pm.
+
+They did it.
+
+New episode of @isthisworkingpod: [LINK]</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('patti-twitter-options')">+ 2 more options</span>
+                                <div id="patti-twitter-options" class="more-options">
+                                    <div class="option-label">Option 2 — Gemba / leading in crisis</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">"Be there. Go and see."
+
+Filtered reports don't tell you what's actually happening. The people closest to the problem do.
+
+New conversation with @connordy: [LINK]</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                        </div>
+                                    </div>
+                                    <div class="option-label">Option 3 — Keg story</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">Met my niece's boyfriend at a graduation party. He said his job was "just a means to an end."
+
+Told her: do not marry him.
+
+Find work that calls your heart.
+
+New episode: [LINK]</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Instagram — accept collab request</div>
+                            <div class="task-description">We'll send a collab request from @isthisworkingpod for the trailer. Just accept it and it'll appear on Patti's grid too. Or post separately using the caption below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram caption (if posting separately)</span>
+                                </div>
+                                <div class="post-text">The coldest day in Michigan history. A gas compressor blew. My worker said "we're losing it."
+
+I knew what that meant.
+
+We went on Facebook Live and asked 2 million people to turn their heat down. At 11pm.
+
+They saved the system.
+
+New episode with @connordiemandyauman — link in bio.
+
+@isthisworkingpod @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Thursday, March 26 — Clip 1: "Leading in Crisis"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <h4>Clip 1: Tips for Leading Through Crisis (~47 sec)</h4>
+                        <p>Connor asks what steps leaders should take in a crisis. Patti's answer: "Be there. Go and see." She references the lean principle "gemba" — go to where the work is happening.</p>
+                        <p class="why-it-works">Most universally applicable clip in the set. Short, punchy, actionable. The gemba reference gives it credibility without being jargony. Good first clip for Patti's audience.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">We'll send a collab request from @isthisworkingpod for the "Leading in Crisis" clip. Accept it or share to stories. Or post it from Patti's accounts directly using the copy below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram/TikTok caption</span>
+                                </div>
+                                <div class="post-text">"Be there. Go and see."
+
+Patti Poppe on the most important thing a leader can do in a crisis. Don't sit in your office waiting for reports. Get to the people closest to the problem.
+
+@isthisworkingpod @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Monday, March 30 — Clip 3: "We're Losing the Gas"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <h4>Clip 3: We're Losing the Gas (~1:36)</h4>
+                        <p>Gas compressor explosion on the coldest day in Michigan history. Patti's team does the first-ever Facebook Live from a utility. "They saved the system that night. We didn't lose anybody. That was a miracle."</p>
+                        <p class="why-it-works">This is the movie clip. Life-or-death stakes, a counterintuitive pivot, and an emotional payoff. Patti's most powerful personal story in the set.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">We'll send a collab request from @isthisworkingpod. Accept it, share to stories, or post it from Patti's accounts with the copy below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram/TikTok caption</span>
+                                </div>
+                                <div class="post-text">Coldest day in Michigan history. Gas compressor explodes. Worker walks up and says "we're losing it."
+
+No playbook for this one.
+
+So she went on Facebook Live and asked 2 million people to turn their thermostats to 65. At 11pm.
+
+"They saved the system that night. We didn't lose anybody. That was a miracle."
+
+@isthisworkingpod @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, April 1 — Clip 4: "The Keg Story"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <h4>Clip 4: The Graduation Party / Keg Story (~1:37)</h4>
+                        <p>Patti meets her niece's boyfriend at a graduation party. He says his job is "just a means to an end." Patti tells her niece: do not marry this guy. The point: find work that calls your heart.</p>
+                        <p class="why-it-works">This is the light one that travels. Funny, complete, punchline is instantly shareable. Different tone from the rest of the set — this is the clip people send their friends.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">IG collab request coming your way</div>
+                            <div class="task-description">We'll send a collab request from @isthisworkingpod. Accept it, share to stories, or post it from Patti's accounts with the copy below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram/TikTok caption</span>
+                                </div>
+                                <div class="post-text">She met her niece's boyfriend at a keg. He said his job was "just a means to an end."
+
+She pulled her niece aside.
+
+"Under no uncertain terms, do not marry this guy. Because he's going to be miserable."
+
+Find work that calls your heart.
+
+@isthisworkingpod @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PGE CHECKLIST -->
+        <div id="pge-checklist" class="checklist-section">
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, March 25 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">LinkedIn — repost Patti's post with a comment</div>
+                            <div class="task-description">Easiest option — reshare Patti's post once it's up. Use this comment copy:</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — PG&amp;E Corporate</span>
+                                </div>
+                                <div class="post-text">Our CEO on what leadership actually looks like under pressure. Full conversation out now.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                            <span class="options-toggle" onclick="toggleOptions('pge-linkedin-options')">+ independent post option</span>
+                            <div id="pge-linkedin-options" class="more-options">
+                                <div class="option-label">Independent post</div>
+                                <div class="post-preview">
+                                    <div class="post-preview-header">
+                                        <span class="platform-dot linkedin"></span>
+                                        <span>LinkedIn — PG&amp;E Corporate</span>
+                                    </div>
+                                    <div class="post-text">PG&E CEO Patti Poppe sat down with Is This Working?! to talk about the decisions behind the company's transformation — burying power lines in Chico, the Consumers Energy gas crisis, and what it means to lead when the stakes are real.
+
+Full episode: [EPISODE LINK]</div>
+                                    <div class="copy-row">
+                                        <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">X/Twitter — quote tweet Patti's post</div>
+                            <div class="task-description">Easiest option is to quote tweet Patti's X post. Or use this standalone copy:</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — PG&amp;E Corporate</span>
+                                </div>
+                                <div class="post-text">"We're not stopping until it's safe."
+
+PG&E CEO @PattiPoppe on what leadership looks like when the stakes are real. New episode of @isthisworkingpod out now: [LINK]</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Instagram — accept collab or repost to stories</div>
+                            <div class="task-description">We'll send a collab request from @isthisworkingpod for the trailer. Accept it or repost to PG&amp;E's stories with this caption:</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot instagram"></span>
+                                    <span>Instagram — PG&amp;E</span>
+                                </div>
+                                <div class="post-text">Our CEO sat down with @isthisworkingpod to talk about what leadership looks like when the stakes are real.
+
+The decisions. The pressure. The moments that define a company.
+
+Episode out now — link in bio.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Friday, April 3 — Clip 2: "Chico Press Conference"</div>
+                    <div class="day-badge clip">CLIP</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <h4>Clip 2: Hiring in Crisis / Chico Press Conference (~1:45)</h4>
+                        <p>Patti describes going to Chico against everyone's advice after the Dixie fire. She held a press conference and promised to bury power lines. They've now buried 1,000 miles, cost dropped from $4M to $3M per mile.</p>
+                        <p class="why-it-works">Strong corporate storytelling asset. High-stakes decision-making with real numbers. The cost data makes it concrete. Good fit for PG&amp;E's operational credibility story.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox" onclick="toggleCheck(this)"></div>
+                        <div class="task-details">
+                            <div class="task-title">Post Clip 2 or accept the IG collab</div>
+                            <div class="task-description">This is PG&amp;E's strongest clip for corporate social — real numbers, real accountability, real results. We'll send a collab request. Or post it directly with the copy below.</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn / Instagram caption</span>
+                                </div>
+                                <div class="post-text">She went to Chico after the Dixie fire. Against everyone's advice. Near the Camp Fire ignition point.
+
+Held a press conference. Promised to bury the power lines.
+
+Media sentiment shifted overnight.
+
+1,000 miles buried. Cost went DOWN from $4M to $3M per mile.
+
+"We're not stopping until it's safe."
+
+@pattipoppe @isthisworkingpod</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FULL TIMELINE -->
+        <div id="all-checklist" class="checklist-section">
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Wednesday, March 25 — Launch Day</div>
+                    <div class="day-badge">LAUNCH</div>
+                </div>
+                <div class="day-content">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Time (PT)</th>
+                                <th>Action</th>
+                                <th>Who</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3" class="schedule-section-header">Morning</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">6:00 AM</td>
+                                <td>Episode live on all podcast platforms</td>
+                                <td class="who-col">ITW</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">7:00 AM</td>
+                                <td>YouTube full episode up</td>
+                                <td class="who-col">ITW</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">7:00 AM</td>
+                                <td>Trailer posts to ITW IG, TikTok, X, YouTube Shorts</td>
+                                <td class="who-col">ITW</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="schedule-section-header">Mid-Day</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">10:00 AM</td>
+                                <td>Connor's LinkedIn post (trailer)</td>
+                                <td class="who-col">Connor</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">10:00 AM</td>
+                                <td>Patti's LinkedIn post (trailer + caption)</td>
+                                <td class="who-col">Patti's team</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">11:00 AM</td>
+                                <td>ITW IG collab accepted / PG&amp;E repost</td>
+                                <td class="who-col">PG&amp;E social team</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">12:00 PM</td>
+                                <td>Patti's X post</td>
+                                <td class="who-col">Patti or team</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">12:00 PM</td>
+                                <td>PG&amp;E X quote tweet</td>
+                                <td class="who-col">PG&amp;E social team</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="schedule-section-header">Afternoon</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">2:00 PM</td>
+                                <td>Alex's posts (LinkedIn + X)</td>
+                                <td class="who-col">Alex</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">3:00 PM</td>
+                                <td>ITW replies + engagement</td>
+                                <td class="who-col">Connor / Alex</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Clip Schedule — Week of Launch</div>
+                    <div class="day-badge clip">CLIPS</div>
+                </div>
+                <div class="day-content">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Clip</th>
+                                <th>Platform</th>
+                                <th>Who Posts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-col">Thu 3/26</td>
+                                <td>Clip 1 — Leading in Crisis (47 sec)</td>
+                                <td>IG / TikTok / YouTube Shorts</td>
+                                <td class="who-col">ITW + Patti (optional)</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">Mon 3/30</td>
+                                <td>Clip 3 — Losing the Gas (biggest story)</td>
+                                <td>IG / TikTok / YouTube Shorts</td>
+                                <td class="who-col">ITW + Patti (optional)</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">Wed 4/1</td>
+                                <td>Clip 4 — Keg Story (the light one)</td>
+                                <td>All platforms</td>
+                                <td class="who-col">ITW + Connor</td>
+                            </tr>
+                            <tr>
+                                <td class="time-col">Fri 4/3</td>
+                                <td>Clip 2 — Chico Press Conference</td>
+                                <td>LinkedIn / X</td>
+                                <td class="who-col">ITW + PG&amp;E</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Distribution Summary</div>
+                    <div class="day-badge clip">ALL ASSETS</div>
+                </div>
+                <div class="day-content">
+                    <div class="dist-table-wrap">
+                        <table class="dist-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>ITW</th>
+                                    <th>Patti LI</th>
+                                    <th>Patti X</th>
+                                    <th>PG&amp;E LI</th>
+                                    <th>PG&amp;E X</th>
+                                    <th>Connor</th>
+                                    <th>Alex</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Trailer</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Clip 1 — Leading in Crisis</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                </tr>
+                                <tr>
+                                    <td>Clip 2 — Chico Press Conference</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                </tr>
+                                <tr>
+                                    <td>Clip 3 — Losing the Gas</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                </tr>
+                                <tr>
+                                    <td>Clip 4 — Keg Story</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-opt">Opt</td>
+                                    <td class="dist-opt">Opt</td>
+                                    <td class="dist-no">—</td>
+                                    <td class="dist-yes">Yes</td>
+                                    <td class="dist-yes">Yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amplification tips -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">How to Amplify Each Other</div>
+                    <div class="day-badge clip">TIPS</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item" style="flex-direction: column; gap: 8px;">
+                        <strong>On Instagram</strong>
+                        <div class="task-description">We'll send collab requests from @isthisworkingpod. Accept the collab and it appears on both accounts. Or repost to stories and tag @isthisworkingpod.</div>
+                    </div>
+                    <div class="task-item" style="flex-direction: column; gap: 8px; margin-top: 0;">
+                        <strong>On LinkedIn</strong>
+                        <div class="task-description">Repost Connor's post and/or comment on each other's posts to boost reach.</div>
+                    </div>
+                    <div class="task-item" style="flex-direction: column; gap: 8px; margin-top: 0;">
+                        <strong>On X/Twitter</strong>
+                        <div class="task-description">Retweet or quote tweet each other. Reply threads help with distribution.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CLIPS AND COPY -->
+        <div id="clips-checklist" class="checklist-section">
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Clip 1: Tips for Leading Through Crisis</div>
+                    <div class="day-badge clip">~47 SEC</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <p>Connor asks what steps leaders should take in a crisis. Patti's answer: "Be there. Go and see." She references the lean principle "gemba" — go to where the work is happening. Don't sit in your office waiting for filtered reports.</p>
+                        <p class="why-it-works">Most universally applicable clip in the set. Short, punchy, actionable. Anyone who manages people will want to send this to someone.</p>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW IG/TikTok caption</div>
+                            <div class="post-preview">
+                                <div class="post-text">"Be there. Go and see."
+
+Patti Poppe on the most important thing a leader can do in a crisis. Don't sit in your office waiting for reports. Get to the people closest to the problem.
+
+@pattipoppe @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW X copy</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @isthisworkingpod</span>
+                                </div>
+                                <div class="post-text">Go to where the work is happening.
+
+Don't wait for filtered reports.
+
+The lean principle is "gemba." Patti Poppe on leading in crisis:</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Clip 2: Chico Press Conference</div>
+                    <div class="day-badge clip">~1:45</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <p>Patti describes going to Chico against everyone's advice after the Dixie fire. She held a press conference and promised to bury power lines. Media sentiment shifted overnight. They've now buried 1,000 miles, cost dropped from $4M to $3M per mile.</p>
+                        <p class="why-it-works">High-stakes decision-making with real numbers. The overnight media shift is a textbook turnaround moment. Strong for corporate storytelling.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW IG/TikTok caption</div>
+                            <div class="post-preview">
+                                <div class="post-text">She went to Chico after the Dixie fire. Against everyone's advice. Near the Camp Fire ignition point.
+
+Held a press conference. Promised to bury the power lines.
+
+Media sentiment shifted overnight.
+
+1,000 miles buried. Cost went DOWN from $4M to $3M per mile.
+
+"We're not stopping until it's safe."
+
+@pattipoppe @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW X copy</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @isthisworkingpod</span>
+                                </div>
+                                <div class="post-text">Everyone said don't go to Chico.
+
+She went.
+
+Held a press conference. Promised to bury the lines. Cost dropped from $4M to $3M per mile.
+
+Sometimes the counterintuitive move is the right one.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Clip 3: We're Losing the Gas</div>
+                    <div class="day-badge clip">~1:36</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <p>Gas compressor station explosion on the coldest day in Michigan history. A worker says "we're losing it." Patti's team does the first-ever Facebook Live from a utility. "They saved the system that night. We didn't lose anybody. That was a miracle."</p>
+                        <p class="why-it-works">This is the movie clip. Life-or-death stakes, a counterintuitive pivot, and an emotional payoff. Strongest clip for organic reach.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW IG/TikTok caption</div>
+                            <div class="post-preview">
+                                <div class="post-text">Coldest day in Michigan history. Gas compressor explodes. Worker walks up and says "we're losing it."
+
+No playbook for this one.
+
+So she went on Facebook Live and asked 2 million people to turn their thermostats to 65. At 11pm.
+
+"They saved the system that night. We didn't lose anybody. That was a miracle."
+
+@pattipoppe @pge</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW X copy</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @isthisworkingpod</span>
+                                </div>
+                                <div class="post-text">"We're losing it."
+
+Coldest day in Michigan history. No gas = people die.
+
+No playbook. So: Facebook Live at 11pm, asking 2M people to turn their heat down.
+
+They did.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Clip 4: The Keg Story</div>
+                    <div class="day-badge clip">~1:37</div>
+                </div>
+                <div class="day-content">
+                    <div class="clip-info-card">
+                        <p>Patti meets her niece's boyfriend at a keg at a graduation party. He says his job is "just a means to an end." Patti tells her niece: do not marry this guy. Because he's going to be miserable. Find work that calls your heart.</p>
+                        <p class="why-it-works">The light one that travels. Funny, complete, the punchline is instantly shareable. This is the clip people send their friends. Works on every platform.</p>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW IG/TikTok caption</div>
+                            <div class="post-preview">
+                                <div class="post-text">She met her niece's boyfriend at a keg. He said his job was "just a means to an end."
+
+She pulled her niece aside.
+
+"Under no uncertain terms, do not marry this guy. Because he's going to be miserable."
+
+Find work that calls your heart.
+
+@pattipoppe</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy caption</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">ITW X copy</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @isthisworkingpod</span>
+                                </div>
+                                <div class="post-text">"Just a means to an end."
+
+That's what the boyfriend said about his job at the graduation party.
+
+She told her niece: do not marry him.
+
+Find work that calls your heart.</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connor's copy -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Connor's Launch Day Copy</div>
+                    <div class="day-badge">CONNOR</div>
+                </div>
+                <div class="day-content">
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">Connor — LinkedIn (10am PT, March 25)</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot linkedin"></span>
+                                    <span>LinkedIn — Connor Diemand-Yauman</span>
+                                </div>
+                                <div class="post-text">I've interviewed a lot of leaders. Most of them talk about crisis in retrospect — cleaned up, with the lessons neatly packaged.
+
+Patti Poppe talked about it like she was still there.
+
+"People were going to die if we lost the gas system."
+
+She described the coldest day in Michigan history. A compressor explosion. A worker saying "we're losing it." And then a decision: get on Facebook Live and ask 2 million people to turn their thermostats to 65. At 11pm. In the middle of winter.
+
+They did it. The system held.
+
+That's the conversation. New episode of Is This Working?! — link in comments.
+
+[EPISODE LINK in first comment]</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-details">
+                            <div class="task-title">Connor — X (March 25)</div>
+                            <div class="post-preview">
+                                <div class="post-preview-header">
+                                    <span class="platform-dot twitter"></span>
+                                    <span>X — @connordy</span>
+                                </div>
+                                <div class="post-text">Patti Poppe walked into a press conference in Chico after the Dixie fire — near the Camp Fire ignition point — against everyone's advice.
+
+Promised to bury the power lines.
+
+Media sentiment shifted overnight.
+
+New episode of @isthisworkingpod: [LINK]</div>
+                                <div class="copy-row">
+                                    <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                </div>
+                                <span class="options-toggle" onclick="toggleOptions('connor-twitter-options')">+ 1 more option</span>
+                                <div id="connor-twitter-options" class="more-options">
+                                    <div class="option-label">Option 2 — Shorter</div>
+                                    <div class="post-preview">
+                                        <div class="post-text">"People were going to die."
+
+New @isthisworkingpod with PG&E CEO @PattiPoppe. One of my favorites we've done. [LINK]</div>
+                                        <div class="copy-row">
+                                            <button class="copy-btn" onclick="copyText(this)">Copy text</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ASSETS AND DOWNLOADS -->
+        <div id="assets-checklist" class="checklist-section">
+            <div class="links-section">
+                <h2>Episode Links</h2>
+                <div class="link-row">
+                    <span class="link-label">Linktree (all platforms)</span>
+                    <a href="https://linktr.ee/isthisworkingpod" target="_blank" class="link-value">linktr.ee/isthisworkingpod</a>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">YouTube</span>
+                    <span class="link-value placeholder">Live on March 25</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Apple Podcasts</span>
+                    <span class="link-value placeholder">Live on March 25</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Spotify</span>
+                    <span class="link-value placeholder">Live on March 25</span>
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 16px; color: var(--yellow);">Download Assets</h2>
+            <div class="assets-grid">
+                <div class="asset-card">
+                    <h3>Trailer Video</h3>
+                    <p>9x16 vertical format for all platforms</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Episode Thumbnail</h3>
+                    <p>For social preview images</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 1 — Leading in Crisis</h3>
+                    <p>~47 sec. Post Thursday 3/26</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 2 — Chico Press Conference</h3>
+                    <p>~1:45. Post Friday 4/3</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 3 — We're Losing the Gas</h3>
+                    <p>~1:36. Post Monday 3/30</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+                <div class="asset-card">
+                    <h3>Clip 4 — The Keg Story</h3>
+                    <p>~1:37. Post Wednesday 4/1</p>
+                    <span class="placeholder">Coming Soon</span>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <h2 style="margin: 32px 0 16px; color: var(--yellow);">Next Steps Checklist</h2>
+            <ul class="next-steps-list">
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Confirm episode title before launch</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Finish trailer cut (Trent framework timecodes above)</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Get episode links from all platforms (YouTube, Apple, Spotify)</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Upload clips to shared folder, fill in download links above</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Send this guide to Patti's team (no later than Fri 3/20)</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Confirm PG&amp;E's approval process timeline — if they need internal sign-off, send assets by Tue 3/18</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Send collab requests from @isthisworkingpod IG to Patti and PG&amp;E accounts</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Confirm which LinkedIn post option Patti's team prefers</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Connor drafts his LinkedIn post (use draft above as starting point)</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Alex schedules his posts for launch day</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Set up clip posting schedule in scheduling tool (Thu 3/26, Mon 3/30, Wed 4/1, Fri 4/3)</span>
+                </li>
+                <li>
+                    <div class="ns-check" onclick="toggleCheck(this)"></div>
+                    <span>Day-of: confirm episode went live on all platforms by 6am PT</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <h3>Questions? We're here.</h3>
+            <p>If anything's unclear or you need a hand with any of this, reach out to <strong>Lauren</strong> on the ITW team. She's your go-to for anything launch-related.</p>
+            <p style="margin-top: 12px;"><a href="mailto:lauren@isthisworkingpod.com" style="color: var(--yellow); text-decoration: none; font-weight: 600;">lauren@isthisworkingpod.com</a></p>
+            <p style="margin-top: 8px; font-size: 0.85rem; color: var(--text-muted);">Made by the Is This Working?! team. Release date: March 25, 2026.</p>
+        </div>
+    </div>
+
+    <script>
+        function showRole(role) {
+            // Update buttons
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.role-btn').classList.add('active');
+
+            // Hide all checklists
+            document.querySelectorAll('.checklist-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected checklist
+            document.getElementById(role + '-checklist').classList.add('active');
+        }
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+        }
+
+        function copyText(btn) {
+            const postText = btn.closest('.post-preview').querySelector('.post-text').innerText;
+            navigator.clipboard.writeText(postText).then(() => {
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function toggleOptions(id) {
+            const options = document.getElementById(id);
+            options.classList.toggle('show');
+            const toggle = event.target;
+            if (options.classList.contains('show')) {
+                toggle.textContent = toggle.textContent.replace('+ ', '- ');
+            } else {
+                toggle.textContent = toggle.textContent.replace('- ', '+ ');
+            }
+        }
+    </script>
+</body>
+</html>
