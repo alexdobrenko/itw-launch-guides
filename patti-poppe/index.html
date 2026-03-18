@@ -4,277 +4,445 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patti Poppe Episode — Launch Guide</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --yellow: #F5D000;
+            --yellow-soft: #F5D00022;
+            --dark: #1a1a1a;
+            --darker: #111111;
+            --card: #222222;
+            --card-border: #333333;
+            --text: #e8e8e8;
+            --text-muted: #999999;
+            --white: #ffffff;
         }
 
-        :root {
-            --yellow: #f5c518;
-            --yellow-light: #ffd84d;
-            --dark: #1a1a1a;
-            --darker: #111;
-            --gray: #2a2a2a;
-            --gray-light: #3a3a3a;
-            --text: #e8e8e8;
-            --text-muted: #999;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--darker);
             color: var(--text);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .header {
-            background: var(--dark);
-            padding: 32px 20px;
-            border-bottom: 3px solid var(--yellow);
-        }
-
-        .header-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .header-top {
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 80vh;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 50% 30%, #2a2520 0%, var(--darker) 70%);
         }
 
-        .show-name {
-            color: var(--yellow);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, var(--yellow-soft) 60deg, transparent 120deg, transparent 240deg, var(--yellow-soft) 300deg, transparent 360deg);
+            animation: slowSpin 30s linear infinite;
+            opacity: 0.3;
         }
 
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
+        @keyframes slowSpin {
+            to { transform: rotate(360deg); }
         }
 
-        .episode-info {
-            color: var(--text-muted);
-            font-size: 1rem;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
         }
 
-        .launch-badge {
+        .podcast-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--yellow);
             color: var(--dark);
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 700;
-            text-align: center;
-            font-size: 0.9rem;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
         }
 
-        .launch-badge .date {
-            font-size: 1.1rem;
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 0.95;
+            color: var(--white);
+            margin-bottom: 0.25em;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Overview section */
-        .overview-section {
-            background: var(--dark);
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .overview-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 32px 20px;
-        }
-
-        .overview-content h2 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-        }
-
-        .overview-content > p {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .tldr-box {
-            background: var(--gray);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            border-left: 4px solid var(--yellow);
-        }
-
-        .tldr-box h3 {
+        .hero-title .accent {
             color: var(--yellow);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .hero-guest {
+            margin-top: 2rem;
+        }
+
+        .hero-guest-name {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 700;
+            color: var(--yellow);
+            margin-bottom: 0.35rem;
+        }
+
+        .hero-guest-meta {
             font-size: 1rem;
-            margin-bottom: 16px;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .launch-pill {
+            display: inline-block;
+            margin-top: 1rem;
+            background: var(--yellow);
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.45rem 1.1rem;
+            border-radius: 100px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--yellow);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Section layout */
+        .section {
+            padding: 4rem 1.5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .section-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 1.25rem;
+            height: 2px;
+            background: var(--yellow);
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+        }
+
+        .section-text {
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.75;
+            max-width: 700px;
+        }
+
+        /* Divider */
+        .divider {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .divider hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--card-border), transparent);
+        }
+
+        /* Overview / Intro card */
+        .intro-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--yellow), transparent);
+        }
+
+        .intro-card h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .intro-card > p {
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+            line-height: 1.7;
+        }
+
+        /* TL;DR / game plan */
+        .tldr-box {
+            background: var(--darker);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .tldr-box-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 1.25rem;
+            display: block;
         }
 
         .tldr-items {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 1.25rem;
         }
 
         .tldr-item {
             display: flex;
-            gap: 16px;
+            gap: 1rem;
             align-items: flex-start;
         }
 
         .tldr-number {
-            width: 28px;
-            height: 28px;
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
             background: var(--yellow);
             color: var(--dark);
-            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
         }
 
         .tldr-item strong {
             display: block;
-            margin-bottom: 4px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.25rem;
         }
 
         .tldr-item p {
-            color: var(--text-muted);
             font-size: 0.9rem;
+            color: var(--text-muted);
             margin: 0;
+            line-height: 1.6;
         }
 
         .overview-note {
             font-size: 0.9rem;
             color: var(--text-muted);
+            line-height: 1.6;
         }
 
-        /* Role selector */
+        /* Role selector (tabs) */
         .role-selector {
-            background: var(--dark);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            border: 1px solid var(--gray);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .role-selector h2 {
-            font-size: 1.1rem;
-            margin-bottom: 16px;
+        .role-selector-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             color: var(--yellow);
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .role-buttons {
             display: flex;
-            gap: 12px;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
         .role-btn {
-            padding: 14px 24px;
-            background: var(--gray);
-            border: 2px solid var(--gray-light);
-            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            background: var(--darker);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
             color: var(--text);
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             transition: all 0.2s;
+            text-align: left;
         }
 
         .role-btn:hover {
             border-color: var(--yellow);
+            color: var(--yellow);
         }
 
         .role-btn.active {
             background: var(--yellow);
             color: var(--dark);
             border-color: var(--yellow);
-            font-weight: 600;
+        }
+
+        .role-btn.active:hover {
+            color: var(--dark);
         }
 
         .role-btn small {
             display: block;
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-top: 4px;
+            font-size: 0.75rem;
+            opacity: 0.75;
+            margin-top: 3px;
+            font-weight: 400;
+        }
+
+        .role-btn.active small {
+            opacity: 0.7;
         }
 
         /* Checklist view */
-        .checklist-section {
-            display: none;
-        }
+        .checklist-section { display: none; }
+        .checklist-section.active { display: block; }
 
-        .checklist-section.active {
-            display: block;
-        }
-
+        /* Day section card */
         .day-section {
-            background: var(--dark);
-            border-radius: 12px;
-            margin-bottom: 20px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
             overflow: hidden;
-            border: 1px solid var(--gray);
+            transition: border-color 0.3s;
         }
 
         .day-header {
-            background: var(--gray);
-            padding: 16px 20px;
+            padding: 1rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(255,255,255,0.02);
         }
 
         .day-title {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
         }
 
         .day-badge {
             background: var(--yellow);
             color: var(--dark);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            padding: 0.3rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .day-badge.clip {
-            background: var(--gray-light);
-            color: var(--text);
+            background: var(--card-border);
+            color: var(--text-muted);
         }
 
         .day-content {
-            padding: 20px;
+            padding: 1.5rem;
         }
 
+        /* Task item */
         .task-item {
             display: flex;
-            gap: 16px;
-            padding: 16px;
-            background: var(--gray);
-            border-radius: 8px;
-            margin-bottom: 12px;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--darker);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
             align-items: flex-start;
+            transition: border-color 0.2s;
         }
 
-        .task-item:last-child {
-            margin-bottom: 0;
-        }
+        .task-item:last-child { margin-bottom: 0; }
+
+        .task-item:hover { border-color: #444; }
 
         .task-checkbox {
             width: 24px;
@@ -287,74 +455,82 @@
             align-items: center;
             justify-content: center;
             margin-top: 2px;
+            transition: background 0.2s;
         }
 
-        .task-checkbox.checked {
-            background: var(--yellow);
-        }
+        .task-checkbox.checked { background: var(--yellow); }
 
         .task-checkbox.checked::after {
             content: '✓';
             color: var(--dark);
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        .task-details {
-            flex: 1;
-        }
+        .task-details { flex: 1; }
 
         .task-title {
-            font-weight: 500;
-            margin-bottom: 6px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.35rem;
+            font-size: 0.95rem;
         }
 
         .task-description {
             font-size: 0.9rem;
             color: var(--text-muted);
+            line-height: 1.6;
         }
 
-        .task-action {
-            margin-top: 12px;
-        }
+        .task-action { margin-top: 0.75rem; }
 
+        /* Action button */
         .action-btn {
-            padding: 10px 16px;
+            padding: 0.6rem 1.1rem;
             background: var(--yellow);
             color: var(--dark);
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.875rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
             transition: all 0.2s;
         }
 
         .action-btn:hover {
-            background: var(--yellow-light);
+            background: #e6c300;
+            transform: translateY(-1px);
         }
 
         .action-btn.secondary {
-            background: var(--gray-light);
+            background: var(--card-border);
             color: var(--text);
+        }
+
+        .action-btn.secondary:hover {
+            background: #444;
+            transform: translateY(-1px);
         }
 
         /* Post preview */
         .post-preview {
-            background: var(--darker);
-            border-radius: 8px;
-            padding: 16px;
-            margin-top: 12px;
-            border: 1px solid var(--gray);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 0.75rem;
         }
 
         .post-preview-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            font-size: 0.85rem;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.05em;
         }
 
         .platform-dot {
@@ -369,165 +545,187 @@
         .platform-dot.tiktok { background: #ff0050; }
 
         .post-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             white-space: pre-wrap;
-            line-height: 1.5;
+            line-height: 1.6;
+            color: var(--text);
         }
 
         .copy-row {
             display: flex;
-            gap: 8px;
-            margin-top: 12px;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
             flex-wrap: wrap;
         }
 
         .copy-btn {
-            padding: 8px 16px;
-            background: var(--gray-light);
-            color: var(--text);
-            border: none;
-            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            background: var(--darker);
+            color: var(--text-muted);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             transition: all 0.2s;
         }
 
         .copy-btn:hover {
             background: var(--yellow);
             color: var(--dark);
+            border-color: var(--yellow);
         }
 
         .copy-btn.copied {
             background: #22c55e;
             color: white;
+            border-color: #22c55e;
         }
 
+        /* Download link */
         .download-link {
             display: inline-block;
-            padding: 8px 16px;
-            background: var(--gray-light);
+            padding: 0.5rem 1rem;
+            background: var(--darker);
             color: var(--yellow);
+            border: 1px solid var(--card-border);
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 0.85rem;
+            font-weight: 600;
             transition: all 0.2s;
         }
 
         .download-link:hover {
             background: var(--yellow);
             color: var(--dark);
+            border-color: var(--yellow);
         }
 
         /* Options toggle */
         .options-toggle {
             color: var(--yellow);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 12px;
+            margin-top: 0.75rem;
             display: inline-block;
+            letter-spacing: 0.02em;
         }
 
-        .options-toggle:hover {
-            text-decoration: underline;
-        }
+        .options-toggle:hover { text-decoration: underline; }
 
-        .more-options {
-            display: none;
-            margin-top: 12px;
-        }
-
-        .more-options.show {
-            display: block;
-        }
+        .more-options { display: none; margin-top: 0.75rem; }
+        .more-options.show { display: block; }
 
         .option-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 8px;
-            margin-top: 16px;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
         }
 
         /* Clip info card */
         .clip-info-card {
-            background: var(--gray);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
+            background: var(--darker);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
             border-left: 3px solid var(--yellow);
         }
 
         .clip-info-card h4 {
             font-size: 0.95rem;
-            margin-bottom: 6px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: var(--yellow);
         }
 
         .clip-info-card p {
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 0.25rem;
+            line-height: 1.6;
         }
 
         .clip-info-card .why-it-works {
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             color: var(--text);
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid var(--gray-light);
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--card-border);
+            line-height: 1.6;
         }
 
-        /* Trailer section */
+        /* Trailer card */
         .trailer-card {
-            background: var(--gray);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--gray-light);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trailer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--yellow), transparent);
         }
 
         .trailer-card h3 {
-            color: var(--yellow);
-            margin-bottom: 12px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.75rem;
         }
 
+        /* Timecode table */
         .timecode-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
-            margin-top: 12px;
+            font-size: 0.875rem;
+            margin-top: 0.75rem;
         }
 
         .timecode-table th {
             text-align: left;
-            padding: 8px 12px;
-            background: var(--gray-light);
+            padding: 0.5rem 0.75rem;
+            background: var(--darker);
             color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.8rem;
+            font-weight: 700;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.1em;
         }
 
-        .timecode-table th:first-child { border-radius: 6px 0 0 6px; }
-        .timecode-table th:last-child { border-radius: 0 6px 6px 0; }
+        .timecode-table th:first-child { border-radius: 8px 0 0 8px; }
+        .timecode-table th:last-child { border-radius: 0 8px 8px 0; }
 
         .timecode-table td {
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--gray-light);
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid var(--card-border);
             vertical-align: top;
         }
 
-        .timecode-table tr:last-child td {
-            border-bottom: none;
-        }
+        .timecode-table tr:last-child td { border-bottom: none; }
 
         .beat-label {
             display: inline-block;
             padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.05em;
         }
 
         .beat-label.hook { background: #7c3aed; color: white; }
@@ -537,14 +735,14 @@
 
         .timecode {
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
         }
 
         /* Distribution table */
         .dist-table-wrap {
             overflow-x: auto;
-            margin-top: 12px;
+            margin-top: 0.75rem;
         }
 
         .dist-table {
@@ -555,189 +753,197 @@
 
         .dist-table th {
             text-align: center;
-            padding: 8px 10px;
-            background: var(--gray-light);
+            padding: 0.5rem 0.6rem;
+            background: var(--darker);
             color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.75rem;
+            font-weight: 700;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.08em;
             white-space: nowrap;
         }
 
         .dist-table th:first-child {
             text-align: left;
-            border-radius: 6px 0 0 6px;
+            border-radius: 8px 0 0 8px;
         }
 
-        .dist-table th:last-child {
-            border-radius: 0 6px 6px 0;
-        }
+        .dist-table th:last-child { border-radius: 0 8px 8px 0; }
 
         .dist-table td {
-            padding: 10px;
-            border-bottom: 1px solid var(--gray-light);
+            padding: 0.7rem 0.6rem;
+            border-bottom: 1px solid var(--card-border);
             text-align: center;
         }
 
         .dist-table td:first-child {
             text-align: left;
             color: var(--text);
-            font-weight: 500;
-        }
-
-        .dist-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .dist-yes {
-            color: #22c55e;
-            font-weight: 700;
-        }
-
-        .dist-opt {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .dist-no {
-            color: var(--gray-light);
-        }
-
-        /* Assets section */
-        .assets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-        }
-
-        .asset-card {
-            background: var(--dark);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid var(--gray);
-        }
-
-        .asset-card h3 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .asset-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .asset-card a, .asset-card .placeholder {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--yellow);
-            color: var(--dark);
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
             font-weight: 600;
         }
 
-        .asset-card .placeholder {
-            background: var(--gray);
+        .dist-table tr:last-child td { border-bottom: none; }
+
+        .dist-yes { color: #22c55e; font-weight: 700; }
+        .dist-opt { color: var(--text-muted); font-size: 0.8rem; }
+        .dist-no { color: var(--card-border); }
+
+        /* Assets grid */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .asset-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .asset-card:hover { border-color: var(--yellow); }
+
+        .asset-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .asset-card p {
+            font-size: 0.82rem;
             color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .asset-card a {
+            display: inline-block;
+            padding: 0.6rem 1.1rem;
+            background: var(--yellow);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .asset-card a:hover {
+            background: #e6c300;
+            transform: translateY(-1px);
+        }
+
+        .asset-card .placeholder {
+            display: inline-block;
+            padding: 0.6rem 1.1rem;
+            background: var(--darker);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            border-radius: 8px;
+            font-size: 0.82rem;
         }
 
         /* Links section */
         .links-section {
-            background: var(--dark);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            border: 1px solid var(--gray);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
         }
 
-        .links-section h2 {
+        .links-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             color: var(--yellow);
-            margin-bottom: 16px;
-            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            display: block;
         }
 
         .link-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--gray);
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--card-border);
         }
 
-        .link-row:last-child {
-            border-bottom: none;
-        }
+        .link-row:last-child { border-bottom: none; }
 
         .link-label {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
         }
 
         .link-value {
             color: var(--yellow);
             text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
         }
 
-        .link-value.placeholder {
-            color: var(--text-muted);
-        }
+        .link-value:hover { opacity: 0.8; }
+        .link-value.placeholder { color: var(--text-muted); font-weight: 400; }
 
         /* Schedule table */
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.9rem;
-            margin-top: 12px;
+            font-size: 0.875rem;
+            margin-top: 0.75rem;
         }
 
         .schedule-table th {
             text-align: left;
-            padding: 8px 12px;
-            background: var(--gray-light);
+            padding: 0.5rem 0.75rem;
+            background: var(--darker);
             color: var(--text-muted);
-            font-weight: 600;
-            font-size: 0.75rem;
+            font-weight: 700;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.1em;
         }
 
-        .schedule-table th:first-child { border-radius: 6px 0 0 6px; }
-        .schedule-table th:last-child { border-radius: 0 6px 6px 0; }
+        .schedule-table th:first-child { border-radius: 8px 0 0 8px; }
+        .schedule-table th:last-child { border-radius: 0 8px 8px 0; }
 
         .schedule-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--gray-light);
+            padding: 0.7rem 0.75rem;
+            border-bottom: 1px solid var(--card-border);
         }
 
-        .schedule-table tr:last-child td {
-            border-bottom: none;
-        }
+        .schedule-table tr:last-child td { border-bottom: none; }
 
         .time-col {
             white-space: nowrap;
             color: var(--yellow);
-            font-weight: 500;
+            font-weight: 700;
         }
 
         .who-col {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
         }
 
         .schedule-section-header {
-            background: var(--gray);
-            padding: 8px 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
+            background: rgba(245, 208, 0, 0.06);
+            padding: 0.5rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--yellow);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.12em;
         }
 
-        /* Next steps checklist */
+        /* Next steps */
         .next-steps-list {
             list-style: none;
             padding: 0;
@@ -745,14 +951,19 @@
 
         .next-steps-list li {
             display: flex;
-            gap: 12px;
-            padding: 12px 16px;
-            background: var(--gray);
-            border-radius: 8px;
-            margin-bottom: 8px;
+            gap: 0.75rem;
+            padding: 0.9rem 1.1rem;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
             align-items: flex-start;
             font-size: 0.9rem;
+            color: var(--text);
+            transition: border-color 0.2s;
         }
+
+        .next-steps-list li:hover { border-color: #444; }
 
         .next-steps-list li .ns-check {
             width: 20px;
@@ -764,79 +975,166 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 1px;
+            margin-top: 2px;
         }
 
-        .next-steps-list li .ns-check.checked {
-            background: var(--yellow);
-        }
+        .next-steps-list li .ns-check.checked { background: var(--yellow); }
 
         .next-steps-list li .ns-check.checked::after {
             content: '✓';
             color: var(--dark);
             font-weight: bold;
-            font-size: 12px;
+            font-size: 11px;
         }
 
         /* Help section */
         .help-section {
-            background: var(--gray);
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 40px;
-            border-left: 4px solid var(--yellow);
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .help-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--yellow), transparent);
         }
 
         .help-section h3 {
-            color: var(--yellow);
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.75rem;
         }
 
         .help-section p {
-            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Big download CTA */
+        .download-cta {
+            background: var(--card);
+            border: 2px solid var(--yellow);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-cta p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .download-cta a {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--dark);
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: all 0.2s;
+        }
+
+        .download-cta a:hover {
+            background: #e6c300;
+            transform: translateY(-2px);
+        }
+
+        /* Section headings inside content panels */
+        .content-section-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .content-section-title:first-child { margin-top: 0; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer .logo-text {
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .header-top {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .role-buttons {
-                flex-direction: column;
-            }
-
-            .role-btn {
-                width: 100%;
-            }
+            .role-buttons { flex-direction: column; }
+            .role-btn { width: 100%; }
+            .day-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .link-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="header-top">
-                <div>
-                    <div class="show-name">Is This Working?!</div>
-                    <h1>Patti Poppe — Launch Guide</h1>
-                    <p class="episode-info">CEO of PG&amp;E — Crisis, Turnaround, and Leading When the Stakes Are Real</p>
-                </div>
-                <div class="launch-badge">
-                    <div>LAUNCH DAY</div>
-                    <div class="date">Wed, March 25</div>
-                </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="podcast-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg>
+                Episode Launch Guide
+            </div>
+            <h1 class="hero-title">IS <span class="accent">THIS</span><br>WORKING?!</h1>
+            <p class="hero-subtitle">with Connor Diemand-Yauman</p>
+            <div class="hero-guest">
+                <p class="hero-guest-name">Patti Poppe</p>
+                <p class="hero-guest-meta">CEO of PG&amp;E — Crisis, Turnaround, and Leading When the Stakes Are Real</p>
+                <span class="launch-pill">Launch Day: Wed, March 25</span>
             </div>
         </div>
-    </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+    </section>
 
-    <div class="overview-section">
-        <div class="overview-content">
+    <!-- OVERVIEW -->
+    <div class="section fade-up">
+        <span class="section-label">Overview</span>
+        <div class="intro-card">
             <h2>Hey Patti and PG&amp;E team!</h2>
             <p>We're excited to launch this episode on March 25. We've prepared all the social copy and distribution plans for you. Everything is ready to go — just pick whatever feels right and paste it in.</p>
 
             <div class="tldr-box">
-                <h3>The game plan</h3>
+                <span class="tldr-box-label">The game plan</span>
                 <div class="tldr-items">
                     <div class="tldr-item">
                         <span class="tldr-number">1</span>
@@ -862,14 +1160,19 @@
                 </div>
             </div>
 
-            <p class="overview-note">Use the tabs below to see what's prepared for each account. All copy is ready to paste. Questions? Contact <strong style="color: var(--text);">Lauren</strong> on the ITW team.</p>
+            <p class="overview-note">Use the tabs below to see what's prepared for each account. All copy is ready to paste. Questions? Contact <strong style="color: var(--white);">Lauren</strong> on the ITW team.</p>
         </div>
     </div>
 
-    <div class="container">
+    <div class="divider"><hr></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="section fade-up">
+        <span class="section-label">Launch Materials</span>
+
         <!-- Role Selector -->
         <div class="role-selector">
-            <h2>I'm posting for...</h2>
+            <span class="role-selector-label">I'm posting for...</span>
             <div class="role-buttons">
                 <button class="role-btn active" onclick="showRole('patti')">
                     Patti's Accounts
@@ -900,7 +1203,7 @@
             <!-- Trailer info -->
             <div class="trailer-card">
                 <h3>The Trailer — Trent Framework Recut</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">Built on the Trent structure: hook, stakes, the turn, the loop. Timecodes for the edit:</p>
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 0.75rem;">Built on the Trent structure: hook, stakes, the turn, the loop. Timecodes for the edit:</p>
                 <table class="timecode-table">
                     <thead>
                         <tr>
@@ -1550,16 +1853,16 @@ Media sentiment shifted overnight.
                     <div class="day-badge clip">TIPS</div>
                 </div>
                 <div class="day-content">
-                    <div class="task-item" style="flex-direction: column; gap: 8px;">
-                        <strong>On Instagram</strong>
+                    <div class="task-item" style="flex-direction: column; gap: 0.5rem;">
+                        <strong style="color: var(--white);">On Instagram</strong>
                         <div class="task-description">We'll send collab requests from @isthisworkingpod. Accept the collab and it appears on both accounts. Or repost to stories and tag @isthisworkingpod.</div>
                     </div>
-                    <div class="task-item" style="flex-direction: column; gap: 8px; margin-top: 0;">
-                        <strong>On LinkedIn</strong>
+                    <div class="task-item" style="flex-direction: column; gap: 0.5rem;">
+                        <strong style="color: var(--white);">On LinkedIn</strong>
                         <div class="task-description">Repost Connor's post and/or comment on each other's posts to boost reach.</div>
                     </div>
-                    <div class="task-item" style="flex-direction: column; gap: 8px; margin-top: 0;">
-                        <strong>On X/Twitter</strong>
+                    <div class="task-item" style="flex-direction: column; gap: 0.5rem;">
+                        <strong style="color: var(--white);">On X/Twitter</strong>
                         <div class="task-description">Retweet or quote tweet each other. Reply threads help with distribution.</div>
                     </div>
                 </div>
@@ -1854,7 +2157,7 @@ New @isthisworkingpod with PG&E CEO @PattiPoppe. One of my favorites we've done.
         <!-- ASSETS AND DOWNLOADS -->
         <div id="assets-checklist" class="checklist-section">
             <div class="links-section">
-                <h2>Episode Links</h2>
+                <span class="links-section-title">Episode Links</span>
                 <div class="link-row">
                     <span class="link-label">Linktree (all platforms)</span>
                     <a href="https://linktr.ee/isthisworkingpod" target="_blank" class="link-value">linktr.ee/isthisworkingpod</a>
@@ -1873,11 +2176,9 @@ New @isthisworkingpod with PG&E CEO @PattiPoppe. One of my favorites we've done.
                 </div>
             </div>
 
-            <h2 style="margin-bottom: 16px; color: var(--yellow);">Download Assets</h2>
-
-            <div style="margin-bottom: 24px; padding: 20px; background: #1a2a1a; border: 2px solid var(--yellow); border-radius: 8px; text-align: center;">
-                <p style="margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted);">All clips, trailer, and assets in one place:</p>
-                <a href="https://drive.google.com/drive/folders/1CPUTdlFkF9jGZ5hI_cJ_co8Axw3SpF3c?usp=sharing" target="_blank" style="display: inline-block; background: var(--yellow); color: #111; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px;">Download All Clips (Google Drive)</a>
+            <div class="download-cta">
+                <p>All clips, trailer, and assets in one place:</p>
+                <a href="https://drive.google.com/drive/folders/1CPUTdlFkF9jGZ5hI_cJ_co8Axw3SpF3c?usp=sharing" target="_blank">Download All Clips (Google Drive)</a>
             </div>
 
             <div class="assets-grid">
@@ -1914,80 +2215,85 @@ New @isthisworkingpod with PG&E CEO @PattiPoppe. One of my favorites we've done.
             </div>
 
             <!-- Next Steps -->
-            <h2 style="margin: 32px 0 16px; color: var(--yellow);">Next Steps Checklist</h2>
-            <ul class="next-steps-list">
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Confirm episode title before launch</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Finish trailer cut (Trent framework timecodes above)</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Get episode links from all platforms (YouTube, Apple, Spotify)</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Upload clips to shared folder, fill in download links above</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Send this guide to Patti's team (no later than Fri 3/20)</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Confirm PG&amp;E's approval process timeline — if they need internal sign-off, send assets by Tue 3/18</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Send collab requests from @isthisworkingpod IG to Patti and PG&amp;E accounts</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Confirm which LinkedIn post option Patti's team prefers</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Connor drafts his LinkedIn post (use draft above as starting point)</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Alex schedules his posts for launch day</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Set up clip posting schedule in scheduling tool (Thu 3/26, Mon 3/30, Wed 4/1, Fri 4/3)</span>
-                </li>
-                <li>
-                    <div class="ns-check" onclick="toggleCheck(this)"></div>
-                    <span>Day-of: confirm episode went live on all platforms by 6am PT</span>
-                </li>
-            </ul>
+            <div style="margin-top: 2.5rem;">
+                <span class="section-label">Next Steps</span>
+                <h2 class="section-title" style="margin-top: 0.5rem;">Pre-launch checklist</h2>
+                <ul class="next-steps-list">
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Confirm episode title before launch</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Finish trailer cut (Trent framework timecodes above)</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Get episode links from all platforms (YouTube, Apple, Spotify)</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Upload clips to shared folder, fill in download links above</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Send this guide to Patti's team (no later than Fri 3/20)</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Confirm PG&amp;E's approval process timeline — if they need internal sign-off, send assets by Tue 3/18</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Send collab requests from @isthisworkingpod IG to Patti and PG&amp;E accounts</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Confirm which LinkedIn post option Patti's team prefers</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Connor drafts his LinkedIn post (use draft above as starting point)</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Alex schedules his posts for launch day</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Set up clip posting schedule in scheduling tool (Thu 3/26, Mon 3/30, Wed 4/1, Fri 4/3)</span>
+                    </li>
+                    <li>
+                        <div class="ns-check" onclick="toggleCheck(this)"></div>
+                        <span>Day-of: confirm episode went live on all platforms by 6am PT</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- Help Section -->
         <div class="help-section">
             <h3>Questions? We're here.</h3>
-            <p>If anything's unclear or you need a hand with any of this, reach out to <strong>Lauren</strong> on the ITW team. She's your go-to for anything launch-related.</p>
-            <p style="margin-top: 12px;"><a href="mailto:lauren@isthisworkingpod.com" style="color: var(--yellow); text-decoration: none; font-weight: 600;">lauren@isthisworkingpod.com</a></p>
-            <p style="margin-top: 8px; font-size: 0.85rem; color: var(--text-muted);">Made by the Is This Working?! team. Release date: March 25, 2026.</p>
+            <p>If anything's unclear or you need a hand with any of this, reach out to <strong style="color: var(--white);">Lauren</strong> on the ITW team. She's your go-to for anything launch-related.</p>
+            <p style="margin-top: 0.75rem;"><a href="mailto:lauren@isthisworkingpod.com" style="color: var(--yellow); text-decoration: none; font-weight: 700;">lauren@isthisworkingpod.com</a></p>
+            <p style="margin-top: 0.5rem; font-size: 0.82rem; color: var(--text-muted);">Made by the Is This Working?! team. Release date: March 25, 2026.</p>
         </div>
+
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo-text">IS THIS WORKING?!</div>
+        <p>We can't wait for people to hear this one.</p>
+    </footer>
 
     <script>
         function showRole(role) {
-            // Update buttons
             document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
             event.target.closest('.role-btn').classList.add('active');
-
-            // Hide all checklists
             document.querySelectorAll('.checklist-section').forEach(section => {
                 section.classList.remove('active');
             });
-
-            // Show selected checklist
             document.getElementById(role + '-checklist').classList.add('active');
         }
 
@@ -2018,6 +2324,18 @@ New @isthisworkingpod with PG&E CEO @PattiPoppe. One of my favorites we've done.
                 toggle.textContent = toggle.textContent.replace('- ', '+ ');
             }
         }
+
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
+
 </body>
 </html>
